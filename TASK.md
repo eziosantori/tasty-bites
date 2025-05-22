@@ -13,7 +13,7 @@
 - [x] Configure jest
 
 ### Core Components Development
-- [ ] Create layout components (Header, Footer, Navigation)
+- [x] Create layout components (Header, Footer, Navigation)
 - [ ] Implement responsive container layouts
 - [ ] Design and build Recipe Card component
 - [ ] Create Search Bar component with input validation
