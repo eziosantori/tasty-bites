@@ -4,12 +4,12 @@
 
 ### Project Setup
 - [x] Initialize Git repository
-- [ ] Create React + TypeScript project with NextJs
-- [ ] Install and configure Tailwind CSS [tailwind](https://v3.tailwindcss.com/docs/installation/using-postcss)
-- [ ] Set up shadcn/ui components
-- [ ] Configure project structure as per PLANNING.md
+- [x] Create React + TypeScript project with NextJs
+- [x] Install and configure Tailwind CSS [tailwind](https://v3.tailwindcss.com/docs/installation/using-postcss)
+- [x] Set up shadcn/ui components
+- [x] Configure project structure as per PLANNING.md
 - [ ] Set up TanStack Query and Axios
-- [ ] Configure tailwind.config.ts with green/orange theme
+- [x] Configure tailwind.config.ts with green/orange theme
 
 ### Core Components Development
 - [ ] Create layout components (Header, Footer, Navigation)

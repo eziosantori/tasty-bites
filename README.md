@@ -34,3 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## API Configuration
+
+This project uses Axios for API requests. The base URL for the API is configured using an environment variable. To change the API endpoint, edit the `.env.local` file at the root of the project:
+
+```
+NEXT_PUBLIC_API_BASE_URL=https://www.themealdb.com/api/json/v1/1/
+```
+
+The Axios instance in `src/lib/api.ts` will automatically use this value.
