@@ -8,8 +8,9 @@
 - [x] Install and configure Tailwind CSS [tailwind](https://v3.tailwindcss.com/docs/installation/using-postcss)
 - [x] Set up shadcn/ui components
 - [x] Configure project structure as per PLANNING.md
-- [ ] Set up TanStack Query and Axios
+- [x] Set up TanStack Query and Axios
 - [x] Configure tailwind.config.ts with green/orange theme
+- [x] Configure jest
 
 ### Core Components Development
 - [ ] Create layout components (Header, Footer, Navigation)
