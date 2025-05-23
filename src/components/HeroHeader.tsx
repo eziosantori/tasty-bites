@@ -1,9 +1,6 @@
 import SearchBar from "./SearchBar";
 
-
 const HeroSection = () => {
-  
-
   return (
     <section className="relative bg-gradient-to-r from-primary-dark to-primary py-8 md:py-16">
       <div className="container mx-auto px-4 relative z-10">
@@ -12,20 +9,21 @@ const HeroSection = () => {
             Find Delicious Recipes
           </h1>
           <p className="text-white/90 text-lg md:text-xl mb-8 ">
-            Search by ingredients or dish name to discover your next favorite meal
+            Search by ingredients or dish name to discover your next favorite
+            meal
           </p>
 
           <SearchBar />
-
         </div>
       </div>
       <div className="absolute inset-0 overflow-hidden">
-        <div 
-          style={{ 
-            backgroundImage: "url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=600&q=80')", 
-            backgroundSize: "cover", 
-            backgroundPosition: "center"
-          }} 
+        <div
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=600&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
           className="absolute inset-0 opacity-20"
         ></div>
         <div className="absolute inset-0 bg-primary opacity-70"></div>

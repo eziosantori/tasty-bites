@@ -44,6 +44,8 @@ const SearchTypeButtons = ({
             : "text-neutral-500 "
         }`}
         aria-pressed={searchType === "name"}
+        aria-label="Search by recipe name"
+        title="Search by recipe name"
       >
         <CookingPot /> By Recipe
       </Button>
@@ -57,6 +59,8 @@ const SearchTypeButtons = ({
             : "text-neutral-500 "
         }`}
         aria-pressed={searchType === "ingredient"}
+        aria-label="Search by ingredient"
+        title="Search by ingredient"
       >
         <ShoppingBasket /> By Ingredient
       </Button>

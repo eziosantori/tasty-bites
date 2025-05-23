@@ -56,3 +56,5 @@ The Axios instance in `src/lib/api.ts` will automatically use this value.
 A set of feature that i would add if i have more time
 
 - clear search X like google on input
+- integrate playwright
+- use the dictionay build-in in Next for labels

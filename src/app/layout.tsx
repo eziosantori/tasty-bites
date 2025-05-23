@@ -20,10 +20,18 @@ export const metadata: Metadata = {
     template: "%s | Tasty Bites",
     default: "Tasty Bites | Find Delicious Recipes",
   },
-  description: "Search for recipes by ingredients or keywords and save your favorites for easy access.",
-  keywords: ["recipes", "cooking", "food", "meal ideas", "recipe finder", "tasty recipes"],
+  description:
+    "Search for recipes by ingredients or keywords and save your favorites for easy access.",
+  keywords: [
+    "recipes",
+    "cooking",
+    "food",
+    "meal ideas",
+    "recipe finder",
+    "tasty recipes",
+  ],
   authors: [{ name: "Tasty Bites" }],
-}
+};
 
 export default function RootLayout({
   children,
@@ -36,12 +44,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
-            <div className="flex flex-col min-h-screen">
-              <NavBar />
-              <div className="flex-1">{children}</div>
-              <Footer />
-            </div>
-
+          <div className="flex flex-col min-h-screen">
+            <NavBar />
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </div>
         </ReactQueryProvider>
       </body>
     </html>

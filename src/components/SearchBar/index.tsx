@@ -23,13 +23,15 @@ const SearchBar = () => {
         <div className="flex">
           <input
             type="text"
-            className="w-full py-3 px-6 rounded-l-full bg-white  shadow-lg focus:ring-2 focus:ring-primary text-neutral-500"
+            className="w-full py-3 px-6 rounded-l-full bg-white shadow-lg focus:bg-neutral-100 focus:outline-none focus:ring-0 text-neutral-500"
             placeholder="Search for recipes or ingredients..."
             aria-label="Search for recipes"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
           <button
+            aria-label="Search"
+            title="Search"
             type="submit"
             className="bg-secondary hover:bg-secondary-dark text-white rounded-r-full px-6 transition-all shadow-lg"
           >
@@ -37,7 +39,7 @@ const SearchBar = () => {
           </button>
         </div>
 
-        <div className="flex rounded-md justify-center h-40">
+        <div className="flex rounded-md justify-center">
           <SearchTypeButtons
             searchType={searchType}
             onTypeChange={(type) => setSearchType(type)}

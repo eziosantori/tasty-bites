@@ -1,17 +1,16 @@
-
 // import RecipeCard from "@/components/RecipeCard";
 import HeroSection from "@/components/HeroHeader";
 // import SearchBar from "@/components/SearchBar";
 import { lazy, Suspense } from "react";
 
-const RecipeCard = lazy(() => import('@/components/RecipeCard'));
+const SearchResult = lazy(() => import("@/components/SearchResult"));
 
 export default function Home() {
   return (
     <>
-    <HeroSection />
-    <main className="container max-w-7xl mx-auto px-4 py-8">
-      {/* <section className="mb-10 text-center">
+      <HeroSection />
+      <main className="container max-w-7xl mx-auto px-4 py-8">
+        {/* <section className="mb-10 text-center">
         <div className="max-w-3xl mx-auto text-center mb-8">
             <h1 id="page-heading" className="text-4xl md:text-5xl font-display font-bold mb-4" tabIndex={0}>
               Discover Delicious Recipes
@@ -25,11 +24,14 @@ export default function Home() {
         <SearchBar  />
       </div> */}
 
-
-      <Suspense fallback={<div className="text-center py-10">Loading featured recipes...</div>}>
-        <RecipeCard />
-      </Suspense>
-    </main>
+        <Suspense
+          fallback={
+            <div className="text-center py-10">Loading featured recipes...</div>
+          }
+        >
+          <SearchResult query="s" searchType="name" />
+        </Suspense>
+      </main>
     </>
   );
 }
