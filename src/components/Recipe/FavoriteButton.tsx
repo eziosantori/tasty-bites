@@ -2,7 +2,7 @@
 
 import { useFavoritesStore } from "@/store/useFavoritesStore";
 import { Bookmark, BookmarkCheck } from "lucide-react";
-import { memo, useState, useEffect } from "react";
+import { memo, useState, useEffect, useMemo } from "react";
 
 const FavoriteButton = ({ idMeal }: { idMeal: string }) => {
   const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
@@ -10,7 +10,11 @@ const FavoriteButton = ({ idMeal }: { idMeal: string }) => {
 
   useEffect(() => {
     setRecipeIsFavorite(isFavorite(idMeal));
-  }, [idMeal]);
+  }, [idMeal, isFavorite]);
+
+  const label = useMemo(() => {
+    return isRecipeFavorite ? "Remove from favorites" : "Add to favorites";
+  }, [isRecipeFavorite]);
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -28,9 +32,8 @@ const FavoriteButton = ({ idMeal }: { idMeal: string }) => {
       className="absolute top-2 right-2 p-2 bg-white/60 backdrop-blur-sm rounded-full transition-colors hover:bg-white/80"
       onClick={handleFavoriteClick}
       type="button"
-      aria-label={
-        isRecipeFavorite ? "Remove from favorites" : "Add to favorites"
-      }
+      aria-label={label}
+      title={label}
     >
       {isRecipeFavorite ? (
         <BookmarkCheck className="text-recipe-accent h-5 w-5" />
