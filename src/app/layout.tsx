@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import ReactQueryProvider from "./Providers/ReactQueryProvider";
+import ReactQueryProvider from "@/lib/Providers/ReactQueryProvider";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 

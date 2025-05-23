@@ -4,6 +4,8 @@ import { useRandomRecipes } from "@/lib/queries";
 import { SearchType } from "@/types/search";
 import RecipeCard from "./Recipe/RecipeCard";
 import RecipeCardSkeleton from "./Recipe/RecipeCardSkeleton";
+import { slugify } from "@/lib/utils";
+import Link from "next/link";
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <div
@@ -41,7 +43,9 @@ const SearchResult = ({
     <Layout>
       {recipes?.map((recipe) => (
         <div key={recipe.idMeal} role="listitem">
-          <RecipeCard recipe={recipe} onClick={(r) => console.log(r)} />
+          <Link href={`/recipes/${slugify(recipe)}`}>
+            <RecipeCard recipe={recipe} />
+          </Link>
         </div>
       ))}
     </Layout>

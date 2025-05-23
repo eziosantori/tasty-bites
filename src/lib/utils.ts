@@ -50,3 +50,20 @@ export const processRecipes = (rawRecipes: unknown[]): Recipe[] =>{
     };
   });
 }
+
+
+export function slugify(recipe: Recipe): string {
+    const name = (recipe.strMeal ?? "")
+        .toLowerCase()
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .replace(/-+/g, "-");
+    return `${recipe.idMeal}--${name}`;
+}
+
+export const getIdFromSlugUrl = (slug: string): string => {
+  const parts = slug.split("--");
+  const id = parts.shift(); // Get the first part of the slug
+  return id || ""; // Return the id or an empty string if not found
+}

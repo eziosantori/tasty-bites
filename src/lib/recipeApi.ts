@@ -14,7 +14,8 @@ export const searchRecipesByIngredient = async (ingredient: string): Promise<Rec
 
 export const fetchRecipeDetails = async (id: string): Promise<Recipe> => {
   const response = await api.get(`/lookup.php?i=${encodeURIComponent(id)}`);
-  return response.data;
+
+  return processRecipes(response.data.meals)[0];
 };
 
 export const fetchRandomRecipes = async (numOfRecipes=6): Promise<Recipe[]> => {
