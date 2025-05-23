@@ -1,10 +1,12 @@
-export interface Recipe {
+export interface RecipeBase {
   idMeal: string;
   strMeal: string;
+    strMealThumb: string;
+}
+export interface Recipe extends RecipeBase {
   strCategory?: string;
   strArea?: string;
   strInstructions?: string;
-  strMealThumb: string;
   strTags?: string;
   strYoutube?: string;
   strSource?: string;

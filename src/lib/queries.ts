@@ -1,18 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
+import { searchRecipesByName, searchRecipesByIngredient, fetchRecipeDetails, fetchRandomRecipes } from '@/lib/recipeApi';
 
-import { searchRecipesByName, searchRecipesByIngredient, fetchRecipeDetails, fetchRandomRecipes } from '../lib/recipeApi';
-
-export const useSearchRecipesByName = (name: string, enabled = true) => {
+export const useSearchRecipesByName = ( name: string, enabled = true) => {
   return useQuery({
-    queryKey: ['recipes', 'name', name],
-    queryFn: () => searchRecipesByName(name),
+    queryKey: ['recipesByName', 'name', name],
+    queryFn: () => searchRecipesByName(name) ,
     enabled: !!name && enabled,
   });
 }
 
-export const useSearchRecipesByIngredient = (ingredient: string, enabled = true) => {
+export const useSearchRecipesByIngredient = ( ingredient: string, enabled = true) => {
   return useQuery({
-    queryKey: ['recipes', 'ingredient', ingredient],
+    queryKey: ['recipesByIngredient', 'ingredient', ingredient, ],
     queryFn: () => searchRecipesByIngredient(ingredient),
     enabled: !!ingredient && enabled,
   });

@@ -3,18 +3,42 @@
 import React from "react";
 import { Search } from "lucide-react";
 import { useSearchStore } from "@/store/useSearchStore";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 import SearchTypeButtons from "./SearchTypeButtons";
 
 const SearchBar = () => {
   const { query, searchType, setQuery, setSearchType } = useSearchStore();
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
-    console.log(query, searchType);
     e.preventDefault();
-    if (query.trim()) {
-      console.log(`Searching for ${query.trim()} by ${searchType}`);
+
+    console.log(query, searchType);
+
+    const trimmedQuery = query.trim();
+    console.log(`Searching for ${query.trim()} by ${searchType}`);
+
+    if (!trimmedQuery) {
+      toast.error("Search query is empty", {
+        description:
+          "Please enter ingredients or keywords to search for recipes.",
+      });
+      // toast(
+      //   <div>
+      //     <div className="font-semibold text-red-600">
+      //       Search query is empty
+      //     </div>
+      //     <div>Please enter ingredients or keywords to search for recipes.</div>
+      //   </div>
+      // );
+      return;
     }
+
+    router.push(
+      `/search?q=${encodeURIComponent(trimmedQuery)}&type=${searchType}`
+    );
   };
 
   return (

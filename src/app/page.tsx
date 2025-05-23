@@ -1,4 +1,4 @@
-import HeroSection from "@/components/HeroHeader";
+import HeroHeader from "@/components/HeroHeader";
 import { lazy, Suspense } from "react";
 
 const FeaturedRecipes = lazy(() => import("@/components/FeaturedRecipes"));
@@ -6,7 +6,7 @@ const FeaturedRecipes = lazy(() => import("@/components/FeaturedRecipes"));
 export default function Home() {
   return (
     <>
-      <HeroSection />
+      <HeroHeader />
       <main className="container max-w-7xl mx-auto px-4 py-8">
         <Suspense
           fallback={

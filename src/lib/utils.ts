@@ -1,4 +1,4 @@
-import { Recipe } from "@/types/recipe";
+import { Recipe, RecipeBase } from "@/types/recipe";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -52,7 +52,7 @@ export const processRecipes = (rawRecipes: unknown[]): Recipe[] =>{
 }
 
 
-export function slugify(recipe: Recipe): string {
+export function slugify(recipe: RecipeBase): string {
   const name = (recipe.strMeal ?? "")
     .toLowerCase()
     .replace(/&/g, "and")

@@ -1,4 +1,4 @@
-import { Recipe } from "../types/recipe";
+import { Recipe, RecipeBase } from "../types/recipe";
 import api from "../lib/api";
 import { processRecipes } from "./utils";
 
@@ -7,7 +7,7 @@ export const searchRecipesByName = async (name: string): Promise<Recipe[]> => {
   return processRecipes(response?.data?.meals || []);
 };
 
-export const searchRecipesByIngredient = async (ingredient: string): Promise<Recipe[]> => {
+export const searchRecipesByIngredient = async (ingredient: string): Promise<RecipeBase[]> => {
   const response = await api.get(`/filter.php?i=${encodeURIComponent(ingredient)}`);
   return processRecipes(response?.data?.meals || []);
 };
