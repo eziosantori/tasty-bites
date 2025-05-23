@@ -45,6 +45,14 @@ NEXT_PUBLIC_API_BASE_URL=https://www.themealdb.com/api/json/v1/1/
 
 The Axios instance in `src/lib/api.ts` will automatically use this value.
 
-## Features
+## Features history
 
 - handle Type search storage on the Session, so on every refresh the user should have always the same selection
+- Search state is now managed globally with Zustand for a more scalable and maintainable architecture
+- The search input now features a custom focus style: instead of a border, the background darkens for better UX
+
+### nice to have
+
+A set of feature that i would add if i have more time
+
+- clear search X like google on input

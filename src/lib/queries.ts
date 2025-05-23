@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { searchRecipesByName, searchRecipesByIngredient, fetchRecipeDetails, fetchRandomRecipe } from '../lib/recipeApi';
+import { searchRecipesByName, searchRecipesByIngredient, fetchRecipeDetails, fetchRandomRecipes } from '../lib/recipeApi';
 
-export function useSearchRecipesByName(name: string, enabled = true) {
+export const useSearchRecipesByName = (name: string, enabled = true) => {
   return useQuery({
     queryKey: ['recipes', 'name', name],
     queryFn: () => searchRecipesByName(name),
@@ -9,7 +9,7 @@ export function useSearchRecipesByName(name: string, enabled = true) {
   });
 }
 
-export function useSearchRecipesByIngredient(ingredient: string, enabled = true) {
+export const useSearchRecipesByIngredient = (ingredient: string, enabled = true) => {
   return useQuery({
     queryKey: ['recipes', 'ingredient', ingredient],
     queryFn: () => searchRecipesByIngredient(ingredient),
@@ -17,7 +17,7 @@ export function useSearchRecipesByIngredient(ingredient: string, enabled = true)
   });
 }
 
-export function useRecipeDetails(id: string, enabled = true) {
+export const useRecipeDetails =(id: string, enabled = true) => {
   return useQuery({
     queryKey: ['recipe', id],
     queryFn: () => fetchRecipeDetails(id),
@@ -25,11 +25,11 @@ export function useRecipeDetails(id: string, enabled = true) {
   });
 }
 
-export function useRandomRecipe(numOfRecipes=1, enabled = true) {
+export const useRandomRecipes = (numOfRecipes=1, enabled = true) => {
     //todo implement teh possibility of getting multiple random recipes
   return useQuery({
-    queryKey: ['randomeRecipis', numOfRecipes],
-    queryFn: () => fetchRandomRecipe(),
+    queryKey: ['randomRecipes', numOfRecipes],
+    queryFn: () => fetchRandomRecipes(numOfRecipes),
     enabled,
   });
 }

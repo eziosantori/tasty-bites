@@ -3,12 +3,19 @@ import { create } from "zustand";
 
 
 
-interface SearchStore {
+interface SearchState {
   query: string;
-  setQuery: (query: string) => void;
   searchType: SearchType;
+}
+
+interface SearchActions {
+  setQuery: (query: string) => void;
   setSearchType: (type: SearchType) => void;
 }
+
+
+// This is the complete type of our Zustand store
+type SearchStore = SearchState & SearchActions;
 
 export const useSearchStore = create<SearchStore>((set) => ({
   query: "",
