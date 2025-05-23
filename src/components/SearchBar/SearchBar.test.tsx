@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import SearchBar from "./SearchBar";
+import SearchBar from ".";
+
 
 // Mock lucide-react icons
 jest.mock("lucide-react", () => ({

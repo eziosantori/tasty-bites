@@ -44,3 +44,7 @@ NEXT_PUBLIC_API_BASE_URL=https://www.themealdb.com/api/json/v1/1/
 ```
 
 The Axios instance in `src/lib/api.ts` will automatically use this value.
+
+## Features
+
+- handle Type search storage on the Session, so on every refresh the user should have always the same selection
