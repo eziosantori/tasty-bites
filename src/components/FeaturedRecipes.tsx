@@ -1,10 +1,11 @@
 "use client";
 
 import { useRandomRecipes } from "@/lib/queries";
-import RecipeCard from "./Recipe/RecipeCard";
-import RecipeCardSkeleton from "./Recipe/RecipeCardSkeleton";
 import { slugify } from "@/lib/utils";
 import Link from "next/link";
+
+import RecipeCard from "./Recipe/RecipeCard";
+import RecipeCardSkeleton from "./Recipe/RecipeCardSkeleton";
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
   <div
