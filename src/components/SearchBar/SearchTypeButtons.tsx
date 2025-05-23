@@ -1,6 +1,7 @@
 import { CookingPot, ShoppingBasket } from "lucide-react";
-import { Button } from "../ui/button";
 import { SearchType } from "@/types/search";
+
+import { Button } from "../ui/button";
 
 const SearchTypeButtons = ({
   onTypeChange,

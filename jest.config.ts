@@ -9,7 +9,7 @@ const createJestConfig = nextJest({
 const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
-    // The directory where Jest should output its coverage files
+  // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
   coverageProvider: "v8",  
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+
 import SearchTypeButtons from "./SearchTypeButtons";
 
 describe("SearchTypeButtons", () => {

@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import NavBar from "./NavBar";
 
 // Mock the useFavoritesStore hook from Zustand

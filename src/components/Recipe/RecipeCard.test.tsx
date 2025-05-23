@@ -1,8 +1,9 @@
 import React from "react";
 import { mockDeep } from "jest-mock-extended";
 import { render, screen } from "@testing-library/react";
-import RecipeCard from "./RecipeCard";
 import { Recipe } from "@/types/recipe";
+
+import RecipeCard from "./RecipeCard";
 
 jest.mock("@/components/ui/badge");
 jest.mock("@/components/Recipe/FavoriteButtonWrapper");

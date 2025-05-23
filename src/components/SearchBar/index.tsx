@@ -2,9 +2,9 @@
 
 import React from "react";
 import { Search } from "lucide-react";
+import { useSearchStore } from "@/store/useSearchStore";
 
 import SearchTypeButtons from "./SearchTypeButtons";
-import { useSearchStore } from "@/store/useSearchStore";
 
 const SearchBar = () => {
   const { query, searchType, setQuery, setSearchType } = useSearchStore();

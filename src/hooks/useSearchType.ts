@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 type SearchType = 'name' | 'ingredient';
 
 export function useSearchType(defaultType: SearchType = 'name') {
-const searchTypeRef = useRef<SearchType>(defaultType);
+  const searchTypeRef = useRef<SearchType>(defaultType);
 
   const [searchType, setSearchType] = useState<SearchType>();
   useEffect(() => {

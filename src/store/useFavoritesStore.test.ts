@@ -1,4 +1,5 @@
 import { act } from 'react';
+
 import { useFavoritesStore } from './useFavoritesStore';
 
 describe('useFavoritesStore', () => {

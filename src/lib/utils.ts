@@ -53,13 +53,13 @@ export const processRecipes = (rawRecipes: unknown[]): Recipe[] =>{
 
 
 export function slugify(recipe: Recipe): string {
-    const name = (recipe.strMeal ?? "")
-        .toLowerCase()
-        .replace(/&/g, "and")
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "")
-        .replace(/-+/g, "-");
-    return `${recipe.idMeal}--${name}`;
+  const name = (recipe.strMeal ?? "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-+/g, "-");
+  return `${recipe.idMeal}--${name}`;
 }
 
 export const getIdFromSlugUrl = (slug: string): string => {

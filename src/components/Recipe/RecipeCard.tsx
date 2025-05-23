@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
-
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Recipe } from "@/types/recipe";
+
 import { Badge } from "../ui/badge";
 import FavoriteButtonWrapper from "./FavoriteButtonWrapper";
 
