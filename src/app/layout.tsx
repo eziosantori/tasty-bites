@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 import ReactQueryProvider from "@/lib/Providers/ReactQueryProvider";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +52,14 @@ export default function RootLayout({
             <Footer />
           </div>
         </ReactQueryProvider>
+        <Toaster
+          richColors
+          expand={true}
+          position="bottom-center"
+          toastOptions={{
+            className: "!text-lg md:!text-xl",
+          }}
+        />
       </body>
     </html>
   );
