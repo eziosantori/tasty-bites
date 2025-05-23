@@ -1,18 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Search } from "lucide-react";
-import { useSessionStorage } from "react-use";
 
 import SearchTypeButtons from "./SearchTypeButtons";
+import { useSearchStore } from "@/store/useSearchStore";
 
 const SearchBar = () => {
-  const [mounted, setMounted] = useState(false);
-  const [query, setQuery] = useState("");
-  const [searchType, setSearchType] = useSessionStorage<"name" | "ingredient">(
-    "searchType",
-    "name"
-  );
+  const { query, searchType, setQuery, setSearchType } = useSearchStore();
 
   const handleSubmit = (e: React.FormEvent) => {
     console.log(query, searchType);
@@ -21,11 +16,6 @@ const SearchBar = () => {
       console.log(`Searching for ${query.trim()} by ${searchType}`);
     }
   };
-
-  useEffect(() => {
-    // Prevent SSR mismatch
-    setMounted(true);
-  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
@@ -49,7 +39,7 @@ const SearchBar = () => {
 
         <div className="flex rounded-md justify-center h-40">
           <SearchTypeButtons
-            searchType={mounted ? searchType : "name"}
+            searchType={searchType}
             onTypeChange={(type) => setSearchType(type)}
           />
         </div>
