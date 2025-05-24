@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 type SearchType = 'name' | 'ingredient';
 
-export function useSearchType(defaultType: SearchType = 'name') {
+export const useSearchType = (defaultType: SearchType = 'name') => {
   const searchTypeRef = useRef<SearchType>(defaultType);
 
   const [searchType, setSearchType] = useState<SearchType>();
@@ -13,19 +13,11 @@ export function useSearchType(defaultType: SearchType = 'name') {
     } else {
       setSearchType(defaultType);
     }
-  }, []);
+  }, [defaultType]);
 
   useEffect(() => {
     sessionStorage.setItem('searchType', searchType as string);
   }, [searchType]);
-  // const setSearchType = (searchType: SearchType) => {
-  //     sessionStorage.setItem('searchType', searchType);
-  //     searchTypeRef.current = searchType;
-  // }
-
-  // useEffect(() => {
-  //   searchTypeRef.current = sessionStorage.getItem('searchType') as SearchType;
-  // },[])
 
   return [searchTypeRef.current, setSearchType] as const;
 }

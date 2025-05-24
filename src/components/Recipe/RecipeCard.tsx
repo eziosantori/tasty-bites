@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Recipe } from "@/types/recipe";
+import { Recipe, RecipeBase } from "@/types/recipe";
 
 import { Badge } from "../ui/badge";
 import FavoriteButtonWrapper from "./FavoriteButtonWrapper";
 
-const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
+const RecipeCard = ({ recipe }: { recipe: Recipe | RecipeBase }) => {
   return (
     <Card className="overflow-hidden h-full recipe-card-hover cursor-pointer relative">
       <div className="relative h-48">

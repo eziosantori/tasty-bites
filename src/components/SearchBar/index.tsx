@@ -15,24 +15,12 @@ const SearchBar = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    console.log(query, searchType);
-
     const trimmedQuery = query.trim();
-    console.log(`Searching for ${query.trim()} by ${searchType}`);
-
     if (!trimmedQuery) {
       toast.error("Search query is empty", {
         description:
           "Please enter ingredients or keywords to search for recipes.",
       });
-      // toast(
-      //   <div>
-      //     <div className="font-semibold text-red-600">
-      //       Search query is empty
-      //     </div>
-      //     <div>Please enter ingredients or keywords to search for recipes.</div>
-      //   </div>
-      // );
       return;
     }
 

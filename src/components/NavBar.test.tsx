@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { useFavoritesStore } from "@/store/useFavoritesStore";
 
 import NavBar from "./NavBar";
 
@@ -6,8 +7,6 @@ import NavBar from "./NavBar";
 jest.mock("@/store/useFavoritesStore", () => ({
   useFavoritesStore: jest.fn(),
 }));
-
-import { useFavoritesStore } from "@/store/useFavoritesStore";
 
 // Cast to unknown first to avoid type error
 const mockedUseFavoritesStore = useFavoritesStore as unknown as jest.Mock;

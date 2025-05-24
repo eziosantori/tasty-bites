@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { pushMock } from "@/setupTests";
 
 import SearchBar from ".";
 
@@ -10,10 +11,6 @@ jest.mock("lucide-react", () => ({
 }));
 
 describe("SearchBar", () => {
-  beforeEach(() => {
-    sessionStorage.clear();
-  });
-
   it("renders input and buttons", () => {
     render(<SearchBar />);
     expect(
@@ -36,7 +33,7 @@ describe("SearchBar", () => {
     );
     fireEvent.change(input, { target: { value: "pasta" } });
     fireEvent.click(screen.getByRole("button", { name: "Search" })); // submit button
-    expect(logSpy).toHaveBeenCalledWith("Searching for pasta by name");
+    expect(pushMock).toHaveBeenCalledWith("/search?q=pasta&type=name");
     logSpy.mockRestore();
   });
 

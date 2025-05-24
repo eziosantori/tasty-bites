@@ -13,6 +13,7 @@ const SearchResultByIngredient = ({ query }: { query: string }) => {
     isLoading,
     error,
   } = useSearchRecipesByIngredient(query);
+
   if (isLoading) {
     return (
       <div className="col-span-full flex flex-col items-center justify-center py-12">

@@ -14,6 +14,7 @@ export default async function SearchPage({
 }) {
   const { q, type } = await searchParams;
 
+  // If the type is not provided, default to "name"
   const searchType = (
     type === "ingredient" ? "ingredient" : "name"
   ) as SearchType;

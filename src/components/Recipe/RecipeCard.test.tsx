@@ -63,7 +63,8 @@ describe("RecipeCard", () => {
   });
 
   it("renders placeholder image if strMealThumb is missing", () => {
-    const recipe = { ...baseRecipe, strMealThumb: undefined };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const recipe = { ...baseRecipe, strMealThumb: undefined } as any;
     render(<RecipeCard recipe={recipe} />);
     const img = screen.getByRole("img");
     expect(img).toHaveAttribute("src", "/placeholder.svg");
