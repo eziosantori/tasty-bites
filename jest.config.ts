@@ -11,7 +11,11 @@ const config: Config = {
   testEnvironment: 'jsdom',
   // The directory where Jest should output its coverage files
   coverageDirectory: "coverage",
-  coverageProvider: "v8",  
+  coverageProvider: "v8",
+  coveragePathIgnorePatterns: [
+    "<rootDir>/src/components/ui/",
+    "<rootDir>/node_modules/"
+  ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   roots: ['<rootDir>/src'],
   testMatch: ['**/__tests__/**/*.(ts|tsx|js)', '**/?(*.)+(spec|test).(ts|tsx|js)'],

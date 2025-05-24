@@ -26,7 +26,6 @@ export const useRecipeDetails =(id: string, enabled = true) => {
 }
 
 export const useRandomRecipes = (numOfRecipes=1, enabled = true) => {
-  //todo implement teh possibility of getting multiple random recipes
   return useQuery({
     queryKey: ['randomRecipes', numOfRecipes],
     queryFn: () => fetchRandomRecipes(numOfRecipes),

@@ -52,7 +52,7 @@ export const processRecipes = (rawRecipes: unknown[]): Recipe[] =>{
 }
 
 
-export function slugify(recipe: RecipeBase): string {
+export const slugify = (recipe: RecipeBase): string => {
   const name = (recipe.strMeal ?? "")
     .toLowerCase()
     .replace(/&/g, "and")
@@ -67,3 +67,9 @@ export const getIdFromSlugUrl = (slug: string): string => {
   const id = parts.shift(); // Get the first part of the slug
   return id || ""; // Return the id or an empty string if not found
 }
+
+export const ZUS_DEVTOOLS_CFG = {
+  name: 'tasty-bite-store', // Name for the devtools
+  storeName: 'zustandStore', // Name for the store in devtools
+  enabled: process.env.NODE_ENV === 'development', // Enable devtools only in development mode
+} as const
