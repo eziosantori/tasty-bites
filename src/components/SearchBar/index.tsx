@@ -1,15 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { Suspense, useMemo } from "react";
 import { Search } from "lucide-react";
-import { useSearchStore } from "@/store/useSearchStore";
+import { createSearchStore } from "@/store/useSearchStore";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import SearchTypeButtons from "./SearchTypeButtons";
 
-const SearchBar = () => {
-  const { query, searchType, setQuery, setSearchType } = useSearchStore();
+const SearchBarPure = () => {
+  const searchParams = useSearchParams();
+  const defaultQuery = searchParams.get("q") || "";
+  const defaultType = (
+    searchParams.get("type") === "ingredient" ? "ingredient" : "name"
+  ) as "name" | "ingredient";
+
+  // Create a store instance with initial values
+  const searchStore = useMemo(
+    () => createSearchStore({ query: defaultQuery, searchType: defaultType }),
+    [defaultQuery, defaultType]
+  );
+  const { query, searchType, setQuery, setSearchType } = searchStore();
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -61,5 +72,13 @@ const SearchBar = () => {
     </form>
   );
 };
+
+const SearchBar = () => (
+  // Suspense is required here because useSearchParams is a client-side hook that may trigger a Next.js error if not wrapped.
+  // See: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
+  <Suspense>
+    <SearchBarPure />
+  </Suspense>
+);
 
 export default SearchBar;

@@ -1,41 +1,25 @@
-"use client"; // <-- This directive makes it a Client Component
+"use client";
 
 import { SearchType } from "@/types/search";
-import { Utensils } from "lucide-react";
 import dynamic from "next/dynamic";
 import React from "react";
 
+import Loading from "./Loading";
+
 // The actual component you want to load only on the client
-const SearchResult = dynamic(
-  () => import("./SearchResult"), // The path to your client-only component
-  {
-    ssr: false, // Now ssr: false is allowed because this is a Client Component
-    loading: () => (
-      <div className="col-span-full flex flex-col items-center justify-center py-12">
-        <span className="relative inline-block animate-pulse">
-          <Utensils className="text-primary" size={64} strokeWidth={3} />
-        </span>
-        <span className="mt-4 text-neutral-400 text-sm">
-          Loading recipes...
-        </span>
-      </div>
-    ),
-  }
-);
+const SearchResult = dynamic(() => import("./SearchResult"), {
+  ssr: false, // Now ssr: false is allowed because this is a Client Component
+  loading: () => (
+    <Loading /> // Use the Loading component for a consistent loading state
+  ),
+});
 
 const SearchResultByIngredient = dynamic(
-  () => import("./SearchResultByIngredient"), // The path to your client-only component
+  () => import("./SearchResultByIngredient"),
   {
     ssr: false, // Now ssr: false is allowed because this is a Client Component
     loading: () => (
-      <div className="col-span-full flex flex-col items-center justify-center py-12">
-        <span className="relative inline-block animate-pulse">
-          <Utensils className="text-primary" size={64} strokeWidth={3} />
-        </span>
-        <span className="mt-4 text-neutral-400 text-sm">
-          Loading recipes...
-        </span>
-      </div>
+      <Loading /> // Use the Loading component for a consistent loading state
     ),
   }
 );

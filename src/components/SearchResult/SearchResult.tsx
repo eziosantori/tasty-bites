@@ -3,27 +3,18 @@
 import { useSearchRecipesByName } from "@/lib/queries";
 import { slugify } from "@/lib/utils";
 import Link from "next/link";
-import { Utensils } from "lucide-react";
 
 import RecipeCard from "../Recipe/RecipeCard";
+import NoResults from "./NoResults";
+import Loading from "./Loading";
 
 const SearchResult = ({ query }: { query: string }) => {
   const { data: recipes, isLoading, error } = useSearchRecipesByName(query);
 
-  if (isLoading) {
-    return (
-      <div className="col-span-full flex flex-col items-center justify-center py-12">
-        <span className="relative inline-block animate-spin-slow">
-          <Utensils className="text-primary" size={48} strokeWidth={3} />
-          {/* You can add more icons or SVGs for more complex animation */}
-        </span>
-        <span className="mt-4 text-neutral-400 text-sm">
-          Loading recipes...
-        </span>
-      </div>
-    );
-  }
+  // quick exits
+  if (isLoading) return <Loading />;
   if (error) return <div>Error loading recipe.</div>;
+  if (!recipes) return <NoResults query={query} />;
 
   return (
     <>

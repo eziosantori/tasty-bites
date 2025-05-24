@@ -50,6 +50,7 @@ The Axios instance in `src/lib/api.ts` will automatically use this value.
 - handle Type search storage on the Session, so on every refresh the user should have always the same selection
 - Search state is now managed globally with Zustand for a more scalable and maintainable architecture
 - The search input now features a custom focus style: instead of a border, the background darkens for better UX
+- The search result by ingredient uses a dedicated component, which is lazy loaded. This separation is necessary to enable true lazy loading and code splitting, so only the content visible on the screen is loaded, improving performance and user experience especially for large result sets.
 
 ### nice to have
 

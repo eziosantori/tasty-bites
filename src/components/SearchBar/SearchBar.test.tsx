@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { render, screen, fireEvent } from "@testing-library/react";
-import { pushMock } from "@/setupTests";
+import { pushMock, useSearchParamsMock } from "@/setupTests";
 
 import SearchBar from ".";
 
@@ -11,6 +12,13 @@ jest.mock("lucide-react", () => ({
 }));
 
 describe("SearchBar", () => {
+  beforeEach(() => {
+    pushMock.mockClear();
+    useSearchParamsMock.mockImplementation(() => ({
+      get: (_key: string): null => null,
+    }));
+  });
+
   it("renders input and buttons", () => {
     render(<SearchBar />);
     expect(
@@ -26,6 +34,9 @@ describe("SearchBar", () => {
   });
 
   it("calls handleSubmit on form submit", () => {
+    useSearchParamsMock.mockImplementation(() => ({
+      get: (_key: string): null => null,
+    }));
     const logSpy = jest.spyOn(console, "log").mockImplementation(() => {});
     render(<SearchBar />);
     const input = screen.getByPlaceholderText(

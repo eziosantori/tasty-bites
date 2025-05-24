@@ -1,3 +1,4 @@
+import SearchBar from "@/components/SearchBar";
 import React from "react";
 
 export default function SearchLayout({
@@ -12,6 +13,9 @@ export default function SearchLayout({
         role="list"
         aria-label="Recipe results"
       >
+        <div className="col-span-full">
+          <SearchBar />
+        </div>
         {children}
       </div>
     </main>

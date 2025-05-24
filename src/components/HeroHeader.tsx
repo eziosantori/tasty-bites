@@ -19,8 +19,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 overflow-hidden">
         <div
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1506368249639-73a05d6f6488?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=600&q=80')",
+            backgroundImage: "url('/bg_hero.avif')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
