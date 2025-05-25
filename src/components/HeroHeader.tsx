@@ -5,7 +5,7 @@ const HeroSection = () => {
     <section className="relative bg-gradient-to-r from-primary-dark to-primary py-8 md:py-16">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-2xl mx-auto text-center text-white">
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Find Delicious Recipes
           </h1>
           <p className="text-white/90 text-lg md:text-xl mb-8 ">

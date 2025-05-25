@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { Utensils, Bookmark, Menu } from "lucide-react";
+import { Utensils, Bookmark } from "lucide-react";
 import { memo } from "react";
 import { useFavoritesStore } from "@/store/useFavoritesStore";
 
+import { Badge } from "./ui/badge";
+
 const Navbar = () => {
   const { favorites } = useFavoritesStore();
-  const favMessage = `${favorites.length} favorite${
+  const favMessage = `You have ${favorites.length} favorite${
     favorites.length > 1 ? "s" : ""
   }`;
   return (
@@ -28,7 +30,7 @@ const Navbar = () => {
           </div>
         </Link>
         <nav className="flex items-center gap-6" aria-label="Main navigation">
-          <Link href="/">
+          <Link href="/" aria-label="Go to home page">
             <span
               className="hidden md:block text-neutral-400 hover:text-primary transition-all"
               tabIndex={0}
@@ -37,39 +39,25 @@ const Navbar = () => {
               Home
             </span>
           </Link>
-          <Link href="/search">
-            <span
-              className="hidden md:block text-neutral-400 hover:text-primary transition-all"
-              tabIndex={0}
-              role="link"
-            >
-              Explore
-            </span>
-          </Link>
           <Link href="/favorites" aria-label="View favorites">
-            <div className="text-primary flex items-center gap-1">
+            <div className="text-neutral-400 flex items-center gap-1 hover:text-primary transition-all">
               <Bookmark aria-hidden="true" focusable="false" />
               <span className="hidden md:inline">Favorites</span>
               {favorites.length > 0 && (
-                <span
-                  className="bg-primary text-white rounded-full text-xs w-5 h-5 flex items-center justify-center"
-                  aria-label={favMessage}
-                  role="status"
-                  title={favMessage}
-                >
+                <Badge aria-label={favMessage} role="status" title={favMessage}>
                   {favorites.length}
-                </span>
+                </Badge>
               )}
             </div>
           </Link>
-          <button
+          {/* <button
             className="ml-2 md:hidden text-neutral-500"
             aria-label="Open menu"
             // onClick={toggleMobileMenu} todo: implement mobile menu toggle
             type="button"
           >
             <Menu className="h-5 w-5" aria-hidden="true" focusable="false" />
-          </button>
+          </button> */}
         </nav>
       </div>
     </header>

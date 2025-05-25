@@ -3,6 +3,7 @@
 import { useFavoritesStore } from "@/store/useFavoritesStore";
 import { Bookmark, BookmarkCheck } from "lucide-react";
 import { memo, useState, useEffect, useMemo } from "react";
+import { toast } from "sonner";
 
 const FavoriteButton = ({ idMeal }: { idMeal: string }) => {
   const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
@@ -21,8 +22,10 @@ const FavoriteButton = ({ idMeal }: { idMeal: string }) => {
     e.stopPropagation();
     if (isRecipeFavorite) {
       removeFavorite(idMeal);
+      toast.warning("Recipe removed from your favorites.");
     } else {
       addFavorite(idMeal);
+      toast.success("The recipe has been added to your favorites.");
     }
     setRecipeIsFavorite(!isRecipeFavorite);
   };

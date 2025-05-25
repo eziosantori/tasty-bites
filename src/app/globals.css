@@ -119,12 +119,21 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  h1 {
+    @apply text-2xl md:text-3xl font-bold mb-2 text-neutral-500;
+  }
+
   button[type="button"], 
   button[type="submit"] {
     @apply cursor-pointer;
   }
+
 }
 
+/* h1 {
+  @apply font-display text-2xl md:text-3xl font-bold mb-2 text-neutral-500;
+} */
 .card {
   padding: 2em;
 }

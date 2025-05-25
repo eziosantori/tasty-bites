@@ -6,15 +6,18 @@ import { useSearchStore } from "@/store/useSearchStore";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { SearchType } from "@/types/search";
+import { clsx } from "clsx";
 
 import SearchTypeButtons from "./SearchTypeButtons";
 
 const SearchBar = ({
   defaultQuery,
   defaultType,
+  inputVariant = "outlined", // new prop
 }: {
   defaultQuery?: string;
   defaultType?: SearchType;
+  inputVariant?: "outlined" | "fill";
 }) => {
   const { searchType, setSearchType, addToHistory } = useSearchStore();
   const [query, setQuery] = useState(defaultQuery || "");
@@ -57,7 +60,12 @@ const SearchBar = ({
         <div className="flex">
           <input
             type="text"
-            className="w-full py-3 px-6 rounded-l-full bg-white shadow-lg focus:bg-neutral-100 focus:outline-none focus:ring-0 text-neutral-500"
+            className={clsx(
+              "w-full py-3 px-6 rounded-l-full bg-white focus:bg-neutral-100 focus:outline-none focus:ring-0 text-neutral-500",
+              inputVariant === "outlined"
+                ? " shadow-lg"
+                : "border border-border"
+            )}
             placeholder="Search for recipes or ingredients..."
             aria-label="Search for recipes"
             value={query}
