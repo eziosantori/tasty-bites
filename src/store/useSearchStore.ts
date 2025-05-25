@@ -6,11 +6,14 @@ import { persist, createJSONStorage, devtools } from "zustand/middleware";
 interface SearchState {
   query: string;
   searchType: SearchType;
+  history: Array<{ query: string; searchType: SearchType }>;
+
 }
 
 interface SearchActions {
   setQuery: (query: string) => void;
   setSearchType: (type: SearchType) => void;
+  addToHistory: (query: string, searchType: SearchType) => void;
 }
 
 // This is the complete type of our Zustand store
@@ -26,10 +29,19 @@ export function createSearchStore(initValues?: Partial<SearchState>) {
           setQuery: (query) => set({ query }, false, 'setQuery'),
           searchType: initValues?.searchType ?? "name",
           setSearchType: (type) => set({ searchType: type }, false, 'setSearchType'),
+          history: initValues?.history ?? [],
+          addToHistory: (query, searchType) => {
+            set((state) => ({
+              history: [
+                { query, searchType },
+                ...state.history.filter(h => h.query !== query || h.searchType !== searchType)
+              ].slice(0, 10) // keep only last 10
+            }), false, 'addToHistory');
+          },
         }),
         {
           name: 'search-storage', // Unique key for your store in localStorage
-          storage: createJSONStorage(() => sessionStorage),
+          storage: createJSONStorage(() => localStorage),
           partialize: (state) => ({ searchType: state.searchType }),
         }
       ),

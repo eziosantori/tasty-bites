@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SearchResultWrapper from "@/components/SearchResult/SearchResultWrapper";
 import { SearchType } from "@/types/search";
+import SearchBar from "@/components/SearchBar";
 
 export const metadata: Metadata = {
   title: "Search Recipes",
@@ -21,6 +22,9 @@ export default async function SearchPage({
 
   return (
     <>
+      <div className="col-span-full">
+        <SearchBar defaultQuery={q ?? ""} defaultType={searchType} />
+      </div>
       {q ? (
         <SearchResultWrapper query={q} searchType={searchType} />
       ) : (
