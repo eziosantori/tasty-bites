@@ -42,7 +42,11 @@ const FavoritesList = () => {
           strMeal: "",
           strMealThumb: "/placeholder.jpg",
         };
-        return <RecipeCardDynamic key={idMeal} recipe={baseCard} />;
+        // we don't use the lazy hydrator here because we assume the list should be small
+        // and we want to render all cards immediately
+        return (
+          <RecipeCardDynamic key={idMeal} recipe={baseCard} inView={true} />
+        );
       })}
     </>
   );

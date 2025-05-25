@@ -4,9 +4,10 @@ import { useSearchRecipesByIngredient } from "@/lib/queries";
 import { slugify } from "@/lib/utils";
 import Link from "next/link";
 
-import RecipeCardDynamic from "../Recipe/RecipeCardDynamic";
 import Loading from "./Loading";
 import NoResults from "./NoResults";
+import RecipeLazyHydrator from "../Recipe/RecipeLazyHydrator";
+import RecipeCardDynamic from "../Recipe/RecipeCardDynamic";
 
 const SearchResultByIngredient = ({ query }: { query: string }) => {
   const {
@@ -24,9 +25,13 @@ const SearchResultByIngredient = ({ query }: { query: string }) => {
     <>
       {recipes?.map((recipe) => (
         <div key={recipe.idMeal} role="listitem">
-          <Link href={`/recipes/${slugify(recipe)}`}>
-            <RecipeCardDynamic recipe={recipe} />
-          </Link>
+          <RecipeLazyHydrator>
+            {(inView) => (
+              <Link href={`/recipes/${slugify(recipe)}`}>
+                <RecipeCardDynamic recipe={recipe} inView={inView ?? false} />
+              </Link>
+            )}
+          </RecipeLazyHydrator>
         </div>
       ))}
     </>
