@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { Search } from "lucide-react";
-import { createSearchStore } from "@/store/useSearchStore";
+import { useSearchStore } from "@/store/useSearchStore";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { SearchType } from "@/types/search";
@@ -16,25 +16,26 @@ const SearchBar = ({
   defaultQuery?: string;
   defaultType?: SearchType;
 }) => {
-  // const searchParams = useSearchParams();
-  // const defaultQuery = searchParams.get("q") || "";
-  // const defaultType = (
-  //   searchParams.get("type") === "ingredient" ? "ingredient" : "name"
-  // ) as "name" | "ingredient";
+  const { searchType, setSearchType, addToHistory } = useSearchStore();
+  const [query, setQuery] = useState(defaultQuery || "");
 
-  // Create a store instance with initial values
-  const searchStore = useMemo(
-    () => createSearchStore({ query: defaultQuery, searchType: defaultType }),
-    [defaultQuery, defaultType]
-  );
-  const { query, searchType, setQuery, setSearchType, addToHistory } =
-    searchStore();
+  useEffect(() => {
+    // Initialize the store with default values if provided
+    if (defaultQuery) {
+      setQuery(defaultQuery);
+    }
+    if (defaultType) {
+      setSearchType(defaultType);
+    }
+  }, [defaultQuery, defaultType, setSearchType]);
+  // Initialize the store with default values if provided
+
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const trimmedQuery = query.trim();
+    const trimmedQuery = query?.trim();
     if (!trimmedQuery) {
       toast.error("Search query is empty", {
         description:

@@ -1,5 +1,6 @@
 import { CookingPot, ShoppingBasket } from "lucide-react";
 import { SearchType } from "@/types/search";
+import { useEffect, useState } from "react";
 
 import { Button } from "../ui/button";
 
@@ -10,8 +11,13 @@ const SearchTypeButtons = ({
   searchType?: SearchType;
   onTypeChange: (searchType: SearchType) => void;
 }) => {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // quick exit should avoid SSR mismatch, to evaluate to use a store
-  if (!searchType) {
+  if (!isMounted || !searchType) {
     return (
       <>
         <Button

@@ -3,33 +3,31 @@ import { SearchType } from "@/types/search";
 import { create } from "zustand";
 import { persist, createJSONStorage, devtools } from "zustand/middleware";
 
-interface SearchState {
-  query: string;
+export interface SearchState {
+  // query: string;
   searchType: SearchType;
   history: Array<{ query: string; searchType: SearchType }>;
 
 }
 
 interface SearchActions {
-  setQuery: (query: string) => void;
+  // setQuery: (query: string) => void;
   setSearchType: (type: SearchType) => void;
   addToHistory: (query: string, searchType: SearchType) => void;
 }
 
 // This is the complete type of our Zustand store
-type SearchStore = SearchState & SearchActions;
+export type SearchStore = SearchState & SearchActions;
 
 // Factory function to allow passing initial values
-export function createSearchStore(initValues?: Partial<SearchState>) {
+export function createSearchStore() {
   return create<SearchStore>()(
     devtools(
       persist(
         (set) => ({
-          query: initValues?.query ?? "",
-          setQuery: (query) => set({ query }, false, 'setQuery'),
-          searchType: initValues?.searchType ?? "name",
+          searchType: "name",
           setSearchType: (type) => set({ searchType: type }, false, 'setSearchType'),
-          history: initValues?.history ?? [],
+          history: [],
           addToHistory: (query, searchType) => {
             set((state) => ({
               history: [
