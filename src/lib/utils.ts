@@ -29,7 +29,7 @@ export const processRecipes = (rawRecipes: unknown[]): Recipe[] =>{
       const ingredient = meal[`strIngredient${i}`];
       const measure = meal[`strMeasure${i}`];
       
-      if (ingredient && ingredient.trim()) {
+      if (ingredient?.trim()) {
         ingredients.push({
           name: ingredient,
           measure: measure || ""

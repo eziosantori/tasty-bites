@@ -73,7 +73,9 @@ export default async function RecipePage({
             <div className="text-center py-10">Loading recipe details...</div>
           }
         >
-          <RecipeDetail recipe={recipe} />
+          <article className="pt-0 md:pt-6 pb-12">
+            <RecipeDetail recipe={recipe} />
+          </article>
         </Suspense>
       </main>
     );

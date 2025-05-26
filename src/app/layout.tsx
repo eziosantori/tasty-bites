@@ -56,7 +56,7 @@ export default function RootLayout({
         </ReactQueryProvider>
         <Toaster
           richColors
-          expand={true}
+          expand
           position="bottom-center"
           toastOptions={{
             className: "!text-lg md:!text-xl",

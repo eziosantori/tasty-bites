@@ -4,8 +4,10 @@ import { useState, useCallback } from "react";
 import { getAdjustedMeasure } from "@/lib/utils";
 import { Recipe } from "@/types/recipe";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Minus, Plus, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+import AdjustServings from "./AdjustServings";
 
 const RecipeDetailSideBar = ({ recipe }: { recipe: Recipe }) => {
   const [servings, setServings] = useState(4);
@@ -57,41 +59,11 @@ const RecipeDetailSideBar = ({ recipe }: { recipe: Recipe }) => {
 
         {/* Servings Adjuster */}
         <div className="mt-6 pt-6 border-t border-neutral-100">
-          <div className="flex justify-between items-center">
-            <label htmlFor="servings" className="text-neutral-500">
-              Servings:
-            </label>
-            <div
-              className="flex items-center"
-              role="group"
-              aria-label="Adjust servings"
-            >
-              <button
-                type="button"
-                className="w-8 h-8 bg-neutral-100 rounded-l-lg flex items-center justify-center text-neutral-400 hover:bg-primary hover:text-white transition-all"
-                onClick={() => adjustServings("decrease")}
-                aria-label="Decrease servings"
-              >
-                <Minus />
-              </button>
-              <span
-                id="servings"
-                className="w-10 h-8 bg-white border-y border-neutral-100 flex items-center justify-center text-neutral-500 font-medium"
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                {servings}
-              </span>
-              <button
-                type="button"
-                className="w-8 h-8 bg-neutral-100 rounded-r-lg flex items-center justify-center text-neutral-400 hover:bg-primary hover:text-white transition-all"
-                onClick={() => adjustServings("increase")}
-                aria-label="Increase servings"
-              >
-                <Plus />
-              </button>
-            </div>
-          </div>
+          <AdjustServings
+            servings={servings}
+            onDecrease={() => adjustServings("decrease")}
+            onIncrease={() => adjustServings("increase")}
+          />
         </div>
 
         {/* Shopping List Button */}

@@ -47,7 +47,7 @@ const FavoritesList = () => {
         // and we want to render all cards immediately
         return (
           <Link key={idMeal} href={`/recipes/${slugify(baseCard)}`}>
-            <RecipeCardDynamic recipe={baseCard} inView={true} />
+            <RecipeCardDynamic recipe={baseCard} inView />
           </Link>
         );
       })}

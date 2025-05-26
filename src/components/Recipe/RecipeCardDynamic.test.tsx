@@ -35,7 +35,7 @@ describe("RecipeCardDynamic", () => {
       isLoading: true,
     });
 
-    render(<RecipeCardDynamic recipe={baseRecipe} inView={true} />);
+    render(<RecipeCardDynamic recipe={baseRecipe} inView />);
     expect(screen.getByTestId("recipe-card-skeleton")).toBeInTheDocument();
     expect(screen.queryByTestId("recipe-card")).not.toBeInTheDocument();
   });
@@ -47,7 +47,7 @@ describe("RecipeCardDynamic", () => {
       isLoading: false,
     });
 
-    render(<RecipeCardDynamic recipe={baseRecipe} inView={true} />);
+    render(<RecipeCardDynamic recipe={baseRecipe} inView />);
     expect(
       screen.queryByTestId("recipe-card-skeleton")
     ).not.toBeInTheDocument();
@@ -60,7 +60,7 @@ describe("RecipeCardDynamic", () => {
       isLoading: false,
     });
 
-    render(<RecipeCardDynamic recipe={baseRecipe} inView={true} />);
+    render(<RecipeCardDynamic recipe={baseRecipe} inView />);
     expect(screen.getByTestId("recipe-card")).toBeInTheDocument();
   });
 
