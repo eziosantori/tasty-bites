@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import RecipeCard from "@/components/Recipe/RecipeCard";
 import { getIdFromSlugUrl } from "@/lib/utils";
 import { fetchRecipeDetails } from "@/lib/recipeApi";
+import RecipeDetail from "@/components/RecipeDetail/RecipeDetail";
 
 export async function generateMetadata({
   params,
@@ -24,10 +24,14 @@ export async function generateMetadata({
 
     return {
       title: recipe.strMeal,
-      description: `Learn how to make ${recipe.strMeal} - Ingredients, instructions, and more.`,
+      description: `Learn how to make ${
+        recipe.strMeal
+      } - ${recipe.strInstructions?.substring(0, 150)}...`,
       openGraph: {
         title: recipe.strMeal,
-        description: `Learn how to make ${recipe.strMeal} - Ingredients, instructions, and more.`,
+        description: `Learn how to make ${
+          recipe.strMeal
+        } - ${recipe.strInstructions?.substring(0, 150)}...`,
         images: [
           {
             url: recipe.strMealThumb,
@@ -69,7 +73,7 @@ export default async function RecipePage({
             <div className="text-center py-10">Loading recipe details...</div>
           }
         >
-          <RecipeCard recipe={recipe} />
+          <RecipeDetail recipe={recipe} />
         </Suspense>
       </main>
     );

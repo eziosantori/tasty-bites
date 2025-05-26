@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { RecipeBase } from "@/types/recipe";
 import { Heart } from "lucide-react";
 import Link from "next/link";
+import { slugify } from "@/lib/utils";
 
 import { Button } from "./ui/button";
 
@@ -45,7 +46,9 @@ const FavoritesList = () => {
         // we don't use the lazy hydrator here because we assume the list should be small
         // and we want to render all cards immediately
         return (
-          <RecipeCardDynamic key={idMeal} recipe={baseCard} inView={true} />
+          <Link key={idMeal} href={`/recipes/${slugify(baseCard)}`}>
+            <RecipeCardDynamic recipe={baseCard} inView={true} />
+          </Link>
         );
       })}
     </>

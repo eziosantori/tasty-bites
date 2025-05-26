@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Recipe, RecipeBase } from "@/types/recipe";
+import { Clock } from "lucide-react";
 
 import { Badge } from "../ui/badge";
 import FavoriteButtonWrapper from "./FavoriteButtonWrapper";
@@ -21,13 +22,15 @@ const RecipeCard = ({ recipe }: { recipe: Recipe | RecipeBase }) => {
         <FavoriteButtonWrapper idMeal={recipe.idMeal} />
       </div>
       <CardContent className="p-4">
-        <h3 className="font-display text-lg font-semibold mb-1 line-clamp-1">
-          {recipe.strMeal}
-        </h3>
+        <h3 className="font-semibold mb-1 line-clamp-1">{recipe.strMeal}</h3>
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           {recipe.strCategory && <span>{recipe.strCategory}</span>}
           {recipe.strCategory && recipe.strArea && <span>•</span>}
           {recipe.strArea && <span>{recipe.strArea}</span>}
+          <span className="ml-auto flex items-center gap-1">
+            <Clock size={16} />
+            <span>{Math.floor(Math.random() * 30) + 20} minutes</span>
+          </span>
         </div>
       </CardContent>
       <CardFooter className="px-4 pb-4 pt-0">

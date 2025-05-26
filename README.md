@@ -59,6 +59,7 @@ The Axios instance in `src/lib/api.ts` will automatically use this value.
 - Placeholder badge shown if no tags are present in RecipeCard
 - Accessibility improvements for RecipeDetailSidebar (ARIA labels, roles, live regions)
 - getAdjustedMeasure now uses useCallback for performance
+- new grid layout to fit the clock icon in the card
 
 ### nice to have
 
