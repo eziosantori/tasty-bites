@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { getAdjustedMeasure } from "@/lib/utils";
 import { Recipe } from "@/types/recipe";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -12,22 +12,13 @@ import AdjustServings from "./AdjustServings";
 const RecipeDetailSideBar = ({ recipe }: { recipe: Recipe }) => {
   const [servings, setServings] = useState(4);
 
-  const adjustServings = useCallback(
-    (type: "increase" | "decrease") => {
-      if (type === "increase" && servings < 12) {
-        setServings((prev) => prev + 1);
-      } else if (type === "decrease" && servings > 1) {
-        setServings((prev) => prev - 1);
-      }
-    },
-    [servings]
-  );
-
-  // Memoized callback for adjusted measure
-  const getAdjustedMeasureCb = useCallback(
-    (measure: string) => getAdjustedMeasure(measure, servings),
-    [servings]
-  );
+  const adjustServings = (type: "increase" | "decrease") => {
+    if (type === "increase" && servings < 12) {
+      setServings((prev) => prev + 1);
+    } else if (type === "decrease" && servings > 1) {
+      setServings((prev) => prev - 1);
+    }
+  };
 
   if (!recipe) return null;
 
@@ -51,7 +42,7 @@ const RecipeDetailSideBar = ({ recipe }: { recipe: Recipe }) => {
                 htmlFor={`ing${index}`}
                 className="text-neutral-500"
               >
-                {getAdjustedMeasureCb(item.measure)} {item.name}
+                {getAdjustedMeasure(item.measure, servings)} {item.name}
               </label>
             </div>
           ))}
