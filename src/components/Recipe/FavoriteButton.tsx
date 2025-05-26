@@ -4,8 +4,17 @@ import { useFavoritesStore } from "@/store/useFavoritesStore";
 import { Bookmark, BookmarkCheck } from "lucide-react";
 import { memo, useState, useEffect, useMemo } from "react";
 import { toast } from "sonner";
+import clsx from "clsx";
 
-const FavoriteButton = ({ idMeal }: { idMeal: string }) => {
+const FavoriteButton = ({
+  idMeal,
+  className = "absolute top-2 right-2 p-2 bg-white/60 backdrop-blur-sm rounded-full transition-colors hover:bg-white/80",
+  size = 5,
+}: {
+  idMeal: string;
+  className?: string;
+  size?: 5 | 8 | 16;
+}) => {
   const { isFavorite, addFavorite, removeFavorite } = useFavoritesStore();
   const [isRecipeFavorite, setRecipeIsFavorite] = useState(false);
 
@@ -32,16 +41,28 @@ const FavoriteButton = ({ idMeal }: { idMeal: string }) => {
 
   return (
     <button
-      className="absolute top-2 right-2 p-2 bg-white/60 backdrop-blur-sm rounded-full transition-colors hover:bg-white/80"
+      className={className}
       onClick={handleFavoriteClick}
       type="button"
       aria-label={label}
       title={label}
     >
       {isRecipeFavorite ? (
-        <BookmarkCheck className="text-recipe-accent h-5 w-5" />
+        <BookmarkCheck
+          className={clsx("text-gray-900", {
+            "h-5 w-5": size === 5,
+            "h-8 w-8": size === 8,
+            "h-16 w-16": size === 16,
+          })}
+        />
       ) : (
-        <Bookmark className="text-gray-700 h-5 w-5" />
+        <Bookmark
+          className={clsx("text-gray-700", {
+            "h-5 w-5": size === 5,
+            "h-8 w-8": size === 8,
+            "h-16 w-16": size === 16,
+          })}
+        />
       )}
     </button>
   );

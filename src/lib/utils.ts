@@ -68,6 +68,64 @@ export const getIdFromSlugUrl = (slug: string): string => {
   return id || ""; // Return the id or an empty string if not found
 }
 
+
+/**
+ * Formats a string of instructions into an array of individual steps.
+ *
+ * Splits the input string by periods or newlines, trims whitespace from each step,
+ * filters out any empty steps, and ensures each step ends with a period.
+ *
+ * @param instructions - The raw instruction string to format.
+ * @returns An array of formatted instruction steps, each ending with a period.
+ */
+export const formatInstructions =(instructions: string)  =>{
+  let steps = instructions
+    .split(/\.\s|\n/)
+    .map(step => step.trim())
+    .filter(step => step.length > 0);
+  
+  // If a step ends without a period, add it
+  steps = steps.map(step => step.endsWith('.') ? step : `${step}.`);
+  
+  return steps;
+}
+
+/**
+ * Calculates an adjusted measurement string based on the desired number of servings.
+ *
+ * This utility parses the numeric portion of a measurement string (e.g., "2.5 cups"),
+ * scales it according to the ratio of `servings` to `baseServings`, and returns the
+ * adjusted measurement with the original unit. If the input does not contain a valid
+ * number or the number of servings matches the base, the original measure is returned.
+ *
+ * @param measure - The measurement string to adjust (e.g., "2 cups").
+ * @param servings - The desired number of servings.
+ * @param baseServings - The base number of servings the original measure is for (default is 4).
+ * @returns The adjusted measurement string for the specified number of servings.
+ */
+export const getAdjustedMeasure = (
+  /**
+   Utility to calculate the adjusted measure for servings
+   */ 
+  measure: string,
+  servings: number,
+  baseServings = 4
+): string =>{
+  if (servings !== baseServings) {
+    // Extract the numeric part (may be float or int)
+    const numeric = parseFloat(measure);
+    if (!isNaN(numeric)) {
+      // Remove the numeric part from the measure string
+      const unit = measure.replace(/[0-9.]/g, "").trim();
+      const adjusted = (numeric * (servings / baseServings))
+        .toFixed(1)
+        .replace(".0", "");
+      return `${adjusted} ${unit}`.trim();
+    }
+  }
+  return measure;
+}
+
 export const ZUS_DEVTOOLS_CFG = {
   name: 'tasty-bite-store', // Name for the devtools
   storeName: 'zustandStore', // Name for the store in devtools

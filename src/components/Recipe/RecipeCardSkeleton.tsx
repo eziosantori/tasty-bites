@@ -15,11 +15,15 @@ const RecipeCardSkeleton = () => {
         <div className="absolute top-2 right-2 w-9 h-9 bg-white/60 rounded-full" />
       </div>
       <CardContent className="p-4">
+        {/*Title*/}
         <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2" />
         <div className="flex items-center gap-2">
           <div className="h-4 w-16 bg-gray-200 dark:bg-gray-700 rounded" />
           <div className="h-4 w-4 bg-gray-200 dark:bg-gray-700 rounded" />
           <div className="h-4 w-16 bg-gray-200 dark:bg-gray-700 rounded" />
+          <span className="ml-auto flex items-center gap-1">
+            <div className="h-4 w-24 bg-gray-200 dark:bg-gray-700 rounded" />
+          </span>
         </div>
       </CardContent>
       <CardFooter className="px-4 pb-4 pt-0">

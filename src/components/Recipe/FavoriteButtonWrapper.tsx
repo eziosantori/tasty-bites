@@ -23,6 +23,8 @@ const FavoriteButton = dynamic(
 );
 
 // This is a Client Component that serves as a wrapper to load your client-only component
-export default function FavoriteButtonWrapper({ idMeal }: { idMeal: string }) {
-  return <FavoriteButton idMeal={idMeal} />;
+export default function FavoriteButtonWrapper(
+  props: React.ComponentProps<typeof FavoriteButton>
+) {
+  return <FavoriteButton {...props} />;
 }

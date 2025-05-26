@@ -52,6 +52,13 @@ The Axios instance in `src/lib/api.ts` will automatically use this value.
 - The search input now features a custom focus style: instead of a border, the background darkens for better UX
 - The search result by ingredient uses a dedicated component, which is lazy loaded. This separation is necessary to enable true lazy loading and code splitting, so only the content visible on the screen is loaded, improving performance and user experience especially for large result sets.
 - fine tuning for search, in the home page removed the binding with the store for the query, still to fix the flikering for the searchType that recover data from the store
+- UI badge for recipe time and type in RecipeDetail, with accessibility improvements
+- Fake cooking time (randomized) for recipes, consistently shown in RecipeCard and RecipeDetail
+- Clock icon and time aligned right in RecipeCard
+- RecipeCardSkeleton updated to match new time/clock UI (if implemented)
+- Placeholder badge shown if no tags are present in RecipeCard
+- Accessibility improvements for RecipeDetailSidebar (ARIA labels, roles, live regions)
+- getAdjustedMeasure now uses useCallback for performance
 
 ### nice to have
 
