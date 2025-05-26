@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecipeDetails } from "@/lib/queries";
-import { RecipeBase } from "@/types/recipe";
+import { Recipe, RecipeBase } from "@/types/recipe";
 
 import RecipeCard from "./RecipeCard";
 import RecipeCardSkeleton from "./RecipeCardSkeleton";
@@ -18,20 +18,42 @@ import RecipeCardSkeleton from "./RecipeCardSkeleton";
 const RecipeCardDynamic = ({
   recipe,
   inView,
+  onCardClick,
 }: {
   recipe: RecipeBase;
   inView: boolean;
+  onCardClick?: (recipe: Recipe) => void;
 }) => {
   // Only fetch details if in view and leverage on cahching of react-query
   const { data: details, isLoading } = useRecipeDetails(recipe.idMeal, inView);
 
   // Show a skeleton or fallback while loading
-  if (isLoading) {
+  if (isLoading || !details) {
     return <RecipeCardSkeleton />;
   }
 
   // If details are loaded, use them, otherwise fallback to base
-  return <RecipeCard recipe={details || recipe} />;
+  return (
+    <>
+      <div
+        role="button"
+        tabIndex={0}
+        className="w-full text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+        onClick={() => onCardClick && onCardClick(details)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault(); // Prevent default action for space key
+            if (onCardClick) {
+              onCardClick(details);
+            }
+          }
+        }}
+        aria-label={`Open details for ${recipe.strMeal}`}
+      >
+        <RecipeCard recipe={details} />
+      </div>
+    </>
+  );
 };
 
 export default RecipeCardDynamic;

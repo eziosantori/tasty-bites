@@ -29,7 +29,9 @@ describe("RecipeDetail", () => {
     expect(screen.getByText(/minutes/)).toBeInTheDocument();
     expect(screen.getByText("Main")).toBeInTheDocument();
     expect(screen.getByText("Italian")).toBeInTheDocument();
-    expect(screen.getByTestId("recipe-detail-sidebar")).toBeInTheDocument();
+    // Accept two sidebars for different breakpoints
+    const sidebars = screen.getAllByTestId("recipe-detail-sidebar");
+    expect(sidebars.length).toBe(2);
     expect(screen.getByTestId("favorite-btn")).toBeInTheDocument();
   });
 

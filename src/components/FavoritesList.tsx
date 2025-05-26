@@ -6,9 +6,10 @@ import dynamic from "next/dynamic";
 import { RecipeBase } from "@/types/recipe";
 import { Heart } from "lucide-react";
 import Link from "next/link";
-import { slugify } from "@/lib/utils";
+import { useCardDialog } from "@/hooks/useCardDialog";
 
 import { Button } from "./ui/button";
+import RecipeDetailDialog from "./RecipeDetail/RecipeDetailDialog";
 
 const RecipeCardDynamic = dynamic(() => import("./Recipe/RecipeCardDynamic"), {
   loading: () => <div className="animate-pulse h-40 bg-muted rounded-lg" />,
@@ -18,6 +19,7 @@ const RecipeCardDynamic = dynamic(() => import("./Recipe/RecipeCardDynamic"), {
 const FavoritesList = () => {
   // Favorites are stored as an array of idMeal (string)
   const favorites = useFavoritesStore((state) => state.favorites);
+  const { selectedRecipe, open, setOpen, handleCardClick } = useCardDialog();
 
   if (!favorites.length) {
     return (
@@ -46,11 +48,19 @@ const FavoritesList = () => {
         // we don't use the lazy hydrator here because we assume the list should be small
         // and we want to render all cards immediately
         return (
-          <Link key={idMeal} href={`/recipes/${slugify(baseCard)}`}>
-            <RecipeCardDynamic recipe={baseCard} inView />
-          </Link>
+          <RecipeCardDynamic
+            key={idMeal}
+            recipe={baseCard}
+            inView
+            onCardClick={handleCardClick}
+          />
         );
       })}
+      <RecipeDetailDialog
+        open={open}
+        onOpenChange={setOpen}
+        recipe={selectedRecipe}
+      />
     </>
   );
 };

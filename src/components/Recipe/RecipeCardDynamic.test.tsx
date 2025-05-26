@@ -54,14 +54,14 @@ describe("RecipeCardDynamic", () => {
     expect(screen.getByTestId("recipe-card")).toBeInTheDocument();
   });
 
-  it("renders RecipeCard with base recipe if details are not loaded", () => {
+  it("renders RecipeCardSkeleton with if details are not loaded", () => {
     (useRecipeDetails as jest.Mock).mockReturnValue({
       data: undefined,
       isLoading: false,
     });
 
     render(<RecipeCardDynamic recipe={baseRecipe} inView />);
-    expect(screen.getByTestId("recipe-card")).toBeInTheDocument();
+    expect(screen.getByTestId("recipe-card-skeleton")).toBeInTheDocument();
   });
 
   it("does not fetch details if inView is false", () => {
@@ -75,6 +75,6 @@ describe("RecipeCardDynamic", () => {
       baseRecipe.idMeal,
       false
     );
-    expect(screen.getByTestId("recipe-card")).toBeInTheDocument();
+    expect(screen.getByTestId("recipe-card-skeleton")).toBeInTheDocument();
   });
 });

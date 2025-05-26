@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { pushMock } from "@/setupTests";
 import { useSearchStore } from "@/store/useSearchStore";

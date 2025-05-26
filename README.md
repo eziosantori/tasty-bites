@@ -64,6 +64,16 @@ The Axios instance in `src/lib/api.ts` will automatically use this value.
 - Reusable RecipeDetailDialog component to show recipe details in a dialog
 - Ingredients section is now shown in different positions on mobile (below image) and desktop (sidebar)
 
+- Full-page, accessible recipe detail dialog using shadcn/ui Dialog, with responsive and scrollable layout
+- Dialog can be opened from RecipeCard in FeaturedRecipes and other lists
+- Ingredients section is now responsive and accessible (mobile/desktop)
+- Improved accessibility: keyboard navigation, screen reader support, and visually hidden dialog titles
+- Consistent card heights even when tags are missing
+- RecipeCard image zoom-in effect on hover
+- Improved test coverage for RecipeCardDynamic, RecipeDetail, AdjustServings, and RecipeDetailSidebar
+- UI/UX tweaks: badge usage, clock icon alignment, grid layout, and padding
+- Hydration safety: removed invalid button nesting, fixed next/image test paths
+
 ### nice to have
 
 A set of feature that i would add if i have more time
