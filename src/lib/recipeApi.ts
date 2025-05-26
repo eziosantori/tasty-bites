@@ -1,6 +1,8 @@
 import { Recipe, RecipeBase } from "../types/recipe";
 import api from "../lib/api";
-import { processRecipes } from "./utils";
+import { intersectionByIdMeal, processRecipes } from "./utils";
+
+
 
 export const searchRecipesByName = async (name: string): Promise<Recipe[]> => {
   const response = await api.get(`/search.php?s=${encodeURIComponent(name)}`);
@@ -8,8 +10,20 @@ export const searchRecipesByName = async (name: string): Promise<Recipe[]> => {
 };
 
 export const searchRecipesByIngredient = async (ingredient: string): Promise<RecipeBase[]> => {
-  const response = await api.get(`/filter.php?i=${encodeURIComponent(ingredient)}`);
-  return processRecipes(response?.data?.meals || []);
+  // Support multiple ingredients split by space
+  const terms = ingredient
+    .split(' ')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (terms.length === 0) return [];
+  // Fetch for each term, collect arrays
+  const results = await Promise.all(
+    terms.map((term) => api.get(`/filter.php?i=${encodeURIComponent(term)}`))
+  );
+  const arrays = results.map((response) => response?.data?.meals || []);
+  // Only keep recipes present in all arrays (intersection)
+  const intersection = intersectionByIdMeal(arrays) as RecipeBase[];
+  return intersection;
 };
 
 export const fetchRecipeDetails = async (id: string): Promise<Recipe> => {

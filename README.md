@@ -73,6 +73,7 @@ The Axios instance in `src/lib/api.ts` will automatically use this value.
 - Improved test coverage for RecipeCardDynamic, RecipeDetail, AdjustServings, and RecipeDetailSidebar
 - UI/UX tweaks: badge usage, clock icon alignment, grid layout, and padding
 - Hydration safety: removed invalid button nesting, fixed next/image test paths
+- Multi-ingredient search: You can now search recipes by multiple ingredients (e.g., "tomato egg"). Only recipes containing all specified ingredients are returned.
 
 ### nice to have
 

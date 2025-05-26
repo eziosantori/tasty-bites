@@ -126,6 +126,27 @@ export const getAdjustedMeasure = (
   return measure;
 }
 
+
+// Utility: get intersection of recipes by idMeal
+export function intersectionByIdMeal<T extends { idMeal: string }>(arrays: T[][]): T[] {
+  if (arrays.length === 0) return [];
+  // Find ids present in all arrays
+  const idSets = arrays.map(arr => new Set(arr.map(r => r.idMeal)));
+  const commonIds = arrays[0]
+    .map(r => r.idMeal)
+    .filter(id => idSets.every(set => set.has(id)));
+  // Return the first occurrence of each common id from the first array
+  const byId = new Map<string, T>();
+  arrays[0].forEach(r => {
+    if (commonIds.includes(r.idMeal) && !byId.has(r.idMeal)) {
+      byId.set(r.idMeal, r);
+    }
+  });
+  return Array.from(byId.values());
+}
+
+
+
 export const ZUS_DEVTOOLS_CFG = {
   name: 'tasty-bite-store', // Name for the devtools
   storeName: 'zustandStore', // Name for the store in devtools
