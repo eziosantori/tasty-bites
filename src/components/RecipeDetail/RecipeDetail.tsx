@@ -64,6 +64,13 @@ const RecipeDetail = ({ recipe }: { recipe: Recipe }) => {
             </p>
           </div>
 
+          {/* Mobile Ingredients (only on mobile) */}
+          <div className="block lg:hidden mb-8">
+            <Suspense>
+              <RecipeDetailSidebar recipe={recipe} />
+            </Suspense>
+          </div>
+
           {/* Tabs */}
           <div className="border-b border-neutral-200 mb-6">
             <ul className="flex -mb-px">
@@ -112,7 +119,8 @@ const RecipeDetail = ({ recipe }: { recipe: Recipe }) => {
         </div>
 
         {/* Sidebar */}
-        <div className="lg:w-1/3 mt-8 lg:mt-0">
+        {/* Desktop/Tablet Ingredients (hidden on mobile) */}
+        <div className="hidden lg:block lg:w-1/3 mt-8 lg:mt-0">
           {/* Ingredients */}
           <Suspense>
             <RecipeDetailSidebar recipe={recipe} />

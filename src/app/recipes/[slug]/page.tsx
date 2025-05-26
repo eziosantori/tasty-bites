@@ -67,13 +67,13 @@ export default async function RecipePage({
     }
 
     return (
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 ">
         <Suspense
           fallback={
             <div className="text-center py-10">Loading recipe details...</div>
           }
         >
-          <article className="pt-0 md:pt-6 pb-12">
+          <article className="pt-0 md:pt-6 pb-12 ">
             <RecipeDetail recipe={recipe} />
           </article>
         </Suspense>
