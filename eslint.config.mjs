@@ -22,6 +22,7 @@ const eslintConfig = [
     },
     rules: {
       "indent": ["warn", 2], // Indentazione di 2 spazi
+      "max-depth": ["warn", 4], // Warn when nesting levels exceed 4
       "import/order": ["warn", {
         "groups": [["builtin", "external", "internal"]],
         "newlines-between": "always"

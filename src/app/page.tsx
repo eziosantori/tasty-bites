@@ -11,7 +11,7 @@ export default function Home() {
         <h2 className="text-2xl md:text-3xl font-bold mb-2 text-neutral-500">
           Featured Recipes
         </h2>
-        <p className="text-neutral-300 mb-8">
+        <p className="text-neutral-500 mb-8">
           Discover our handpicked selection of delicious meals
         </p>
         <Suspense

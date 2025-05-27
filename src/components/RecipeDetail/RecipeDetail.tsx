@@ -7,10 +7,11 @@ import { Clock, Globe, Utensils } from "lucide-react";
 
 import FavoriteButtonWrapper from "../Recipe/FavoriteButtonWrapper";
 import RecipeDetailSidebar from "./RecipeDetailSidebar";
+import ShareRecipeButton from "./ShareRecipeButton";
+// import ShareRecipeButton from "./ShareRecipeButton";
 
 const RecipeDetail = ({ recipe }: { recipe: Recipe }) => {
   if (!recipe) return null;
-
   const instructionSteps = formatInstructions(recipe.strInstructions ?? "");
 
   return (
@@ -22,11 +23,15 @@ const RecipeDetail = ({ recipe }: { recipe: Recipe }) => {
             <h1 className="font-display text-3xl md:text-4xl font-bold text-neutral-500">
               {recipe.strMeal}
             </h1>
-            <FavoriteButtonWrapper
-              idMeal={recipe.idMeal}
-              size={8}
-              className="-"
-            />
+            <div
+              role="group"
+              aria-label="Recipe actions"
+              className="flex gap-2 items-center"
+            >
+              <Suspense fallback={null}>
+                <ShareRecipeButton recipe={recipe} />
+              </Suspense>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-3 mb-6">
@@ -53,6 +58,7 @@ const RecipeDetail = ({ recipe }: { recipe: Recipe }) => {
               className="object-cover"
               priority
             />
+            <FavoriteButtonWrapper idMeal={recipe.idMeal} size={8} />
           </div>
 
           <div className="text-neutral-500 max-w-none mt-4 mb-8">

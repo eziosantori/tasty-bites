@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 const FavoriteButton = ({
   idMeal,
-  className = "absolute top-2 right-2 p-2 bg-white/60 backdrop-blur-sm rounded-full transition-colors hover:bg-white/80",
+  className = "absolute top-2 right-2 p-2 bg-white/60 backdrop-blur-sm rounded-full transition-colors hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-primary",
   size = 5,
 }: {
   idMeal: string;
