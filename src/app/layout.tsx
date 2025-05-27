@@ -46,6 +46,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        lang="en"
       >
         <ReactQueryProvider>
           <div className="flex flex-col min-h-screen">

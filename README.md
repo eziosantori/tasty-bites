@@ -191,3 +191,7 @@ A set of feature that i would add if i have more time
 - use the dictionay build-in in Next for labels
 - history hint when prompting in search
 - filter by category/Region on the search Results
+
+## Lighthouse Reports
+
+See the [Lighthouse Reports](docs/Lighthouse.md) for performance and accessibility audits of the main pages.
