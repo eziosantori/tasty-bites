@@ -39,7 +39,7 @@ const FeaturedRecipes = () => {
         {recipes?.map((recipe, index) => (
           <Link
             href={`/recipes/${slugify(recipe)}`}
-            key={recipe.idMeal + "-" + index}
+            key={`${recipe.idMeal}-${index}`}
             role="listitem"
           >
             <RecipeCard recipe={recipe} />

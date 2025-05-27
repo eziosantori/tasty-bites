@@ -27,6 +27,20 @@ const RecipeCardDynamic = ({
   // Only fetch details if in view and leverage on cahching of react-query
   const { data: details, isLoading } = useRecipeDetails(recipe.idMeal, inView);
 
+  // Event handlers moved out of JSX to avoid inline arrow functions
+  const handleClick = () => {
+    if (onCardClick && details) {
+      onCardClick(details);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if ((e.key === "Enter" || e.key === " ") && onCardClick && details) {
+      e.preventDefault();
+      onCardClick(details);
+    }
+  };
+
   // Show a skeleton or fallback while loading
   if (isLoading || !details) {
     return <RecipeCardSkeleton />;
@@ -39,15 +53,8 @@ const RecipeCardDynamic = ({
         role="button"
         tabIndex={0}
         className="w-full text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
-        onClick={() => onCardClick && onCardClick(details)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault(); // Prevent default action for space key
-            if (onCardClick) {
-              onCardClick(details);
-            }
-          }
-        }}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
         aria-label={`Open details for ${recipe.strMeal}`}
       >
         <RecipeCard recipe={details} />

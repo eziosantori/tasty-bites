@@ -104,6 +104,7 @@ const RecipeDetail = ({ recipe }: { recipe: Recipe }) => {
                 <h3 className="mb-4">Video Tutorial</h3>
                 <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
                   <iframe
+                    sandbox="allow-same-origin allow-scripts allow-presentation allow-popups"
                     width="560"
                     height="315"
                     src={recipe.strYoutube.replace("watch?v=", "embed/")}

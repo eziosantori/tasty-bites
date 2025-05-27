@@ -2,6 +2,7 @@
 
 import { useSearchRecipesByName } from "@/lib/queries";
 import { useCardDialog } from "@/hooks/useCardDialog";
+import { Recipe } from "@/types/recipe";
 
 import RecipeCard from "../Recipe/RecipeCard";
 import NoResults from "./NoResults";
@@ -11,8 +12,22 @@ import RecipeDetailDialog from "../RecipeDetail/RecipeDetailDialog";
 
 const SearchResult = ({ query }: { query: string }) => {
   const { data: recipes, isLoading, error } = useSearchRecipesByName(query);
-
   const { selectedRecipe, open, setOpen, handleCardClick } = useCardDialog();
+
+  // Handler functions to avoid inline arrow functions in JSX
+  const handleClick = (recipe: Recipe) => {
+    handleCardClick(recipe);
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLDivElement>,
+    recipe: Recipe
+  ) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleCardClick(recipe);
+    }
+  };
 
   // quick exits
   if (isLoading) return <Loading />;
@@ -29,13 +44,8 @@ const SearchResult = ({ query }: { query: string }) => {
                 role="button"
                 tabIndex={0}
                 className="w-full text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
-                onClick={() => handleCardClick(recipe)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault(); // Prevent default action for space key
-                    handleCardClick(recipe);
-                  }
-                }}
+                onClick={() => handleClick(recipe)}
+                onKeyDown={(e) => handleKeyDown(e, recipe)}
                 aria-label={`Open details for ${recipe.strMeal}`}
               >
                 <RecipeCard recipe={recipe} />

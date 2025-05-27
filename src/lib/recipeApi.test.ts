@@ -1,5 +1,5 @@
 import { searchRecipesByIngredient } from "./recipeApi";
-import api from "../lib/api";
+import api from "./api";
 import { intersectionByIdMeal } from "./utils";
 
 jest.mock("../lib/api");

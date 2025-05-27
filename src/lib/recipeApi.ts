@@ -1,5 +1,5 @@
 import { Recipe, RecipeBase } from "../types/recipe";
-import api from "../lib/api";
+import api from "./api";
 import { intersectionByIdMeal, processRecipes } from "./utils";
 
 
