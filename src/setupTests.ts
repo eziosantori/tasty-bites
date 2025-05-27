@@ -9,3 +9,14 @@ jest.mock("next/navigation", () => ({
   useRouter: () => ({ push: pushMock }),
   useSearchParams: () => useSearchParamsMock(),
 }));
+
+if (typeof window !== "undefined" && !window.IntersectionObserver) {
+  // @ts-expect-error: Mock IntersectionObserver for Jest environment
+  window.IntersectionObserver = class IntersectionObserver {
+    constructor() {}
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+    takeRecords() { return []; }
+  };
+}

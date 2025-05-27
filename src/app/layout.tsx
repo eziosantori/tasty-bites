@@ -5,6 +5,7 @@ import ReactQueryProvider from "@/lib/Providers/ReactQueryProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import GoToTopButton from "@/components/GoToTopButton";
 
 import "./globals.css";
 
@@ -54,6 +55,7 @@ export default function RootLayout({
           </div>
           <ReactQueryDevtools initialIsOpen={false} />
         </ReactQueryProvider>
+        <GoToTopButton />
         <Toaster
           richColors
           expand

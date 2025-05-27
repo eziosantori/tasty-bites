@@ -28,7 +28,7 @@ export default async function SearchPage({
 
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 pt-8">
         <div className="max-w-2xl mx-auto">
           <SearchBar
             defaultQuery={q ?? ""}
