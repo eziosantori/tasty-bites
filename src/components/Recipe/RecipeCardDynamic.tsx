@@ -51,7 +51,6 @@ const RecipeCardDynamic = ({
     <>
       <div
         role="button"
-        tabIndex={0}
         className="w-full text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
         onClick={handleClick}
         onKeyDown={handleKeyDown}

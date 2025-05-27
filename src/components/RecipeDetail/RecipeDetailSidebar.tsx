@@ -26,10 +26,17 @@ const RecipeDetailSideBar = ({ recipe }: { recipe: Recipe }) => {
     <>
       {/* Ingredients */}
       <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-        <h2 className="font-display text-xl font-bold mb-4 text-neutral-500">
+        <h2
+          id="ingredients-heading"
+          className="font-display text-xl font-bold mb-4 text-neutral-500"
+        >
           Ingredients
         </h2>
-        <div className="space-y-4">
+        <section
+          className="space-y-4"
+          role="region"
+          aria-labelledby="ingredients-heading"
+        >
           {recipe.ingredients?.map((item, index) => (
             <div key={index} className="flex items-start">
               <Checkbox
@@ -46,7 +53,7 @@ const RecipeDetailSideBar = ({ recipe }: { recipe: Recipe }) => {
               </label>
             </div>
           ))}
-        </div>
+        </section>
 
         {/* Servings Adjuster */}
         <div className="mt-6 pt-6 border-t border-neutral-100">
