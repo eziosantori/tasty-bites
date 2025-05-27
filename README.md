@@ -1,39 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TastyBites - Recipe Finder Application
+
+TastyBites is a user-centric recipe finder application built with [Next.js](https://nextjs.org), allowing users to discover recipes by ingredients or keywords.
+
+## Core Features
+
+### Recipe Search
+
+- Search by ingredients or keywords (supports multi-ingredient search)
+- Dynamic results updating in real-time
+- Error handling for invalid or empty searches
+- Search state persists across page refreshes using session storage
+
+### Recipe Views
+
+- Responsive grid layout of recipe cards
+- Each card displays:
+  - Recipe name
+  - Image with hover zoom effect
+  - Estimated cooking time
+  - Category tags
+- Full-screen recipe detail dialog with:
+  - Ingredients list
+  - Cooking instructions
+  - Preparation time
+  - Responsive layout for mobile/desktop
+
+### Favorites System
+
+- Save favorite recipes locally
+- Quick access to saved recipes
+- Persistent storage using browser's local storage
+
+## Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org) with TypeScript
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
+  - Custom theme defined in `globals.css` using CSS variables and OKLCH colors
+  - Responsive design
+  - Custom focus styles
+- **State Management**: [Zustand](https://zustand-demo.pmnd.rs/)
+- **API Integration**:
+  - [TheMealDB API](https://www.themealdb.com/api.php)
+  - Axios for HTTP requests
+  - TanStack Query for data fetching
+- **Testing**: Comprehensive unit test coverage
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env.local` file with:
+   ```
+   NEXT_PUBLIC_API_BASE_URL=https://www.themealdb.com/api/json/v1/1/
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open [http://localhost:3000](http://localhost:3000)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Development
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project uses environment variables for configuration. Copy `.env.example` to `.env.local` and adjust values as needed.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Theme Configuration
 
-## Learn More
+Theme customization is handled in `src/app/globals.css` using CSS variables and OKLCH colors for better color space support. The theme includes custom variants and can be modified by updating the CSS variables in this file.
 
-To learn more about Next.js, take a look at the following resources:
+### Development Tools
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The project includes powerful development tools for debugging and monitoring application state:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### TanStack Query DevTools
 
-## Deploy on Vercel
+![TanStack Query DevTools](docs/imgs/devtools.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Built-in development tools help monitor and debug API requests and cache state:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Real-time view of query states and data
+- Cache inspection and manipulation
+- Request timing and performance metrics
+- Query invalidation debugging
+
+#### State Management DevTools
+
+For debugging global state:
+
+- Zustand supports Redux DevTools out of the box
+- View and track state changes in real-time
+- Time-travel debugging
+- Action history and state snapshots
+
+To enable DevTools:
+
+1. Install [Redux DevTools browser extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+2. TanStack Query DevTools are automatically enabled in development mode
+3. Open browser DevTools and find the Redux tab for state inspection
+
+### State Management
+
+- Global state managed with Zustand
+- Search state persists in session storage
+- Favorites stored in local storage
+- TanStack Query for API data caching
+
+### Accessibility Features
+
+- ARIA labels and roles
+- Keyboard navigation support
+- Screen reader friendly
+- ARIA live regions that announce dynamic updates (e.g., search results, recipe loading states, favorite toggles)
+- Visually hidden dialog titles
+- Custom focus styles
+
+### Performance Optimizations
+
+- IntersectionObserver for efficient DOM management:
+  - Defers loading of heavy DOM elements (images, text) until visible
+  - Reduces initial page load by hydrating components only when in viewport
+  - Optimizes memory usage in image-rich recipe lists
+- Lazy loading of components
+- Code splitting
+- Image optimization with next/image
+- Component memoization where beneficial
+- TanStack Query for efficient data caching
+
+## Deployment
+
+Deploy easily on [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme):
+
+1. Push your code to GitHub
+2. Import the repository to Vercel
+3. Configure environment variables
+4. Deploy
+
+For more details, see [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
 
 ## API Configuration
 
@@ -82,3 +189,5 @@ A set of feature that i would add if i have more time
 - clear search X like google on input
 - integrate playwright
 - use the dictionay build-in in Next for labels
+- history hint when prompting in search
+- filter by category/Region on the search Results
