@@ -1,14 +1,14 @@
 "use client";
 
-import { useSearchRecipesByName } from "@/lib/queries";
 import { useCardDialog } from "@/hooks/useCardDialog";
+import { useSearchRecipesByName } from "@/lib/queries";
 import { Recipe } from "@/types/recipe";
 
 import RecipeCard from "../Recipe/RecipeCard";
-import NoResults from "./NoResults";
-import Loading from "./Loading";
 import RecipeLazyHydrator from "../Recipe/RecipeLazyHydrator";
 import RecipeDetailDialog from "../RecipeDetail/RecipeDetailDialog";
+import Loading from "./Loading";
+import NoResults from "./NoResults";
 
 const SearchResultItem = ({
   recipe,

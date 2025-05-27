@@ -1,16 +1,23 @@
-import { Suspense } from "react";
+import { Badge } from "@/components/ui/badge";
 import { formatInstructions } from "@/lib/utils";
 import { Recipe } from "@/types/recipe";
-import Image from "next/image";
-import { Badge } from "@/components/ui/badge";
 import { Clock, Globe, Utensils } from "lucide-react";
+import Image from "next/image";
+import { Suspense } from "react";
 
 import FavoriteButtonWrapper from "../Recipe/FavoriteButtonWrapper";
+import BackButton from "../ui/back-button";
 import RecipeDetailSidebar from "./RecipeDetailSidebar";
 import ShareRecipeButton from "./ShareRecipeButton";
 // import ShareRecipeButton from "./ShareRecipeButton";
 
-const RecipeDetail = ({ recipe }: { recipe: Recipe }) => {
+const RecipeDetail = ({
+  recipe,
+  showBackButton = true,
+}: {
+  recipe: Recipe;
+  showBackButton?: boolean;
+}) => {
   if (!recipe) return null;
   const instructionSteps = formatInstructions(recipe.strInstructions ?? "");
 
@@ -19,6 +26,13 @@ const RecipeDetail = ({ recipe }: { recipe: Recipe }) => {
       <div className="lg:flex gap-8">
         {/* Recipe Main Content */}
         <div className="lg:w-2/3">
+          {showBackButton && (
+            <div>
+              <Suspense>
+                <BackButton />
+              </Suspense>
+            </div>
+          )}
           <div className="flex justify-between items-start mb-4">
             <h1 className="font-display text-3xl md:text-4xl font-bold text-neutral-500">
               {recipe.strMeal}

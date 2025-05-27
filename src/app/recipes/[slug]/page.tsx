@@ -1,9 +1,9 @@
-import { Suspense } from "react";
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import { getIdFromSlugUrl } from "@/lib/utils";
-import { fetchRecipeDetails } from "@/lib/recipeApi";
 import RecipeDetail from "@/components/RecipeDetail/RecipeDetail";
+import { fetchRecipeDetails } from "@/lib/recipeApi";
+import { getIdFromSlugUrl } from "@/lib/utils";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 export async function generateMetadata({
   params,
@@ -67,13 +67,13 @@ export default async function RecipePage({
     }
 
     return (
-      <main className="container mx-auto px-4 py-8 ">
+      <main className="container mx-auto px-4 py-2 md:py-8  ">
         <Suspense
           fallback={
             <div className="text-center py-10">Loading recipe details...</div>
           }
         >
-          <article className="pt-0 md:pt-6 pb-12 ">
+          <article className="pt-0 pb-12 ">
             <RecipeDetail recipe={recipe} />
           </article>
         </Suspense>
