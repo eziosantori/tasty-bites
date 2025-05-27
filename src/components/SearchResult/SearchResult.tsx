@@ -10,6 +10,43 @@ import Loading from "./Loading";
 import RecipeLazyHydrator from "../Recipe/RecipeLazyHydrator";
 import RecipeDetailDialog from "../RecipeDetail/RecipeDetailDialog";
 
+const SearchResultItem = ({
+  recipe,
+  onCardClick,
+}: {
+  recipe: Recipe;
+  onCardClick: (recipe: Recipe) => void;
+}) => {
+  // Handler functions to avoid inline arrow functions in JSX
+  const handleClick = () => {
+    onCardClick(recipe);
+  };
+
+  // Handler functions to avoid inline arrow functions in JSX
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onCardClick(recipe);
+    }
+  };
+  return (
+    <RecipeLazyHydrator>
+      {() => (
+        <div
+          role="button"
+          tabIndex={0}
+          className="w-full text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
+          aria-label={`Open details for ${recipe.strMeal}`}
+        >
+          <RecipeCard recipe={recipe} />
+        </div>
+      )}
+    </RecipeLazyHydrator>
+  );
+};
+
 const SearchResult = ({ query }: { query: string }) => {
   const { data: recipes, isLoading, error } = useSearchRecipesByName(query);
   const { selectedRecipe, open, setOpen, handleCardClick } = useCardDialog();
@@ -17,16 +54,6 @@ const SearchResult = ({ query }: { query: string }) => {
   // Handler functions to avoid inline arrow functions in JSX
   const handleClick = (recipe: Recipe) => {
     handleCardClick(recipe);
-  };
-
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLDivElement>,
-    recipe: Recipe
-  ) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      handleCardClick(recipe);
-    }
   };
 
   // quick exits
@@ -38,20 +65,7 @@ const SearchResult = ({ query }: { query: string }) => {
     <>
       {recipes?.map((recipe) => (
         <div key={recipe.idMeal} role="listitem">
-          <RecipeLazyHydrator>
-            {() => (
-              <div
-                role="button"
-                tabIndex={0}
-                className="w-full text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary"
-                onClick={() => handleClick(recipe)}
-                onKeyDown={(e) => handleKeyDown(e, recipe)}
-                aria-label={`Open details for ${recipe.strMeal}`}
-              >
-                <RecipeCard recipe={recipe} />
-              </div>
-            )}
-          </RecipeLazyHydrator>
+          <SearchResultItem recipe={recipe} onCardClick={handleClick} />
         </div>
       ))}
       <RecipeDetailDialog

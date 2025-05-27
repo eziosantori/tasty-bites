@@ -19,6 +19,12 @@ const RecipeDetailSideBar = ({ recipe }: { recipe: Recipe }) => {
       setServings((prev) => prev - 1);
     }
   };
+  const handleIncrease = () => {
+    adjustServings("increase");
+  };
+  const handleDecrease = () => {
+    adjustServings("decrease");
+  };
 
   if (!recipe) return null;
 
@@ -52,8 +58,8 @@ const RecipeDetailSideBar = ({ recipe }: { recipe: Recipe }) => {
         <div className="mt-6 pt-6 border-t border-neutral-100">
           <AdjustServings
             servings={servings}
-            onDecrease={() => adjustServings("decrease")}
-            onIncrease={() => adjustServings("increase")}
+            onDecrease={handleDecrease}
+            onIncrease={handleIncrease}
           />
         </div>
 

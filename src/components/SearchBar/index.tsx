@@ -54,6 +54,14 @@ const SearchBar = ({
     );
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
+  const handleTypeChange = (type: SearchType) => {
+    setSearchType(type);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <div className="flex flex-col gap-2">
@@ -69,7 +77,7 @@ const SearchBar = ({
             placeholder="Search for recipes or ingredients..."
             aria-label="Search for recipes"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={handleInputChange}
           />
           <button
             aria-label="Search"
@@ -84,20 +92,12 @@ const SearchBar = ({
         <div className="flex rounded-md justify-center">
           <SearchTypeButtons
             searchType={searchType}
-            onTypeChange={(type) => setSearchType(type)}
+            onTypeChange={handleTypeChange}
           />
         </div>
       </div>
     </form>
   );
 };
-
-// const SearchBar = () => (
-//   // Suspense is required here because useSearchParams is a client-side hook that may trigger a Next.js error if not wrapped.
-//   // See: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
-//   <Suspense>
-//     <SearchBarPure />
-//   </Suspense>
-// );
 
 export default SearchBar;

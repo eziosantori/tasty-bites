@@ -16,6 +16,12 @@ const SearchTypeButtons = ({
     setIsMounted(true);
   }, []);
 
+  const handleByNameClick = () => {
+    onTypeChange("name");
+  };
+  const handleByIngredientClick = () => {
+    onTypeChange("ingredient");
+  };
   // quick exit should avoid SSR mismatch, to evaluate to use a store
   if (!isMounted || !searchType) {
     return (
@@ -44,7 +50,7 @@ const SearchTypeButtons = ({
       <Button
         type="button"
         variant={searchType === "name" ? "default" : "outline"}
-        onClick={() => onTypeChange("name")}
+        onClick={handleByNameClick}
         className={`rounded-r-none w-40 ${
           searchType === "name"
             ? "bg-secondary hover:bg-secondary/90 "
@@ -59,7 +65,7 @@ const SearchTypeButtons = ({
       <Button
         type="button"
         variant={searchType === "ingredient" ? "default" : "outline"}
-        onClick={() => onTypeChange("ingredient")}
+        onClick={handleByIngredientClick}
         className={`rounded-l-none w-40 ${
           searchType === "ingredient"
             ? "bg-secondary hover:bg-secondary/90"
