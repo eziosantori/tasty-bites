@@ -27,16 +27,20 @@ export default async function SearchPage({
   }
 
   return (
-    <GridLayout pageTitle="Search Results" addH1={false}>
-      <div className="col-span-full">
-        <SearchBar
-          defaultQuery={q ?? ""}
-          defaultType={searchType}
-          inputVariant="fill"
-        />
+    <>
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-2xl mx-auto">
+          <SearchBar
+            defaultQuery={q ?? ""}
+            defaultType={searchType}
+            inputVariant="fill"
+          />
+        </div>
         <h1 className="mt-3">Search Results:</h1>
       </div>
-      <SearchResultWrapper query={q} searchType={searchType} />
-    </GridLayout>
+      <GridLayout pageTitle="Search Results" addH1={false}>
+        <SearchResultWrapper query={q} searchType={searchType} />
+      </GridLayout>
+    </>
   );
 }

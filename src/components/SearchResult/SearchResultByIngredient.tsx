@@ -21,7 +21,7 @@ const SearchResultByIngredient = ({ query }: { query: string }) => {
   // quick exits
   if (isLoading) return <Loading />;
   if (error) return <div>Error loading recipe.</div>;
-  if (!recipes) return <NoResults query={query} />;
+  if (!recipes || recipes.length === 0) return <NoResults query={query} />;
 
   return (
     <>
